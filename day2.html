@@ -6,43 +6,58 @@
 <title>AI Engineer Paris 2026 Day2｜Main Stage 全日演講心得報告</title>
 <meta name="description" content="生成媒體、推論引擎、語音、商業數據、agentic coding——十二場 Main Stage 演講的跨議程思想煉金報告">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@500;700;900&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 <style>
 :root {
-  --bg: #f9f7f4;
-  --fg: #1a1a1a;
-  --muted: #6b6459;
-  --card-bg: #ffffff;
-  --border: #e6e1d8;
-  --accent: #b5502f;
-  --accent-soft: #f1e3da;
-  --link: #a0451f;
-  --code-bg: #f1efe9;
+  --bg: #f2f0e9;
+  --fg: #1c1d1b;
+  --muted: #6b6a5e;
+  --card-bg: #faf9f5;
+  --border: #d8d4c8;
+  --accent: #3f6355;
+  --accent-soft: #e3e9e1;
+  --brass: #a9762e;
+  --brass-soft: #f1e6d2;
+  --rust: #a2492f;
+  --rust-soft: #f3e2db;
+  --link: #3f6355;
+  --code-bg: #ece9df;
+  --serif: "Noto Serif TC", "Source Serif 4", "Times New Roman", serif;
+  --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --mono: "IBM Plex Mono", "Noto Sans TC", monospace;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #1b1a17;
-    --fg: #eae6dd;
-    --muted: #a89f8f;
-    --card-bg: #242220;
-    --border: #3a362f;
-    --accent: #e8935f;
-    --accent-soft: #3a2c22;
-    --link: #f0a878;
-    --code-bg: #2a2723;
+    --bg: #17181a;
+    --fg: #e8e6de;
+    --muted: #9c9a8c;
+    --card-bg: #1f2022;
+    --border: #34362f;
+    --accent: #6b9c89;
+    --accent-soft: #24312b;
+    --brass: #d4a855;
+    --brass-soft: #332a17;
+    --rust: #d0836a;
+    --rust-soft: #32211c;
+    --link: #6b9c89;
+    --code-bg: #202220;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #1b1a17;
-  --fg: #eae6dd;
-  --muted: #a89f8f;
-  --card-bg: #242220;
-  --border: #3a362f;
-  --accent: #e8935f;
-  --accent-soft: #3a2c22;
-  --link: #f0a878;
-  --code-bg: #2a2723;
+  --bg: #17181a;
+  --fg: #e8e6de;
+  --muted: #9c9a8c;
+  --card-bg: #1f2022;
+  --border: #34362f;
+  --accent: #6b9c89;
+  --accent-soft: #24312b;
+  --brass: #d4a855;
+  --brass-soft: #332a17;
+  --rust: #d0836a;
+  --rust-soft: #32211c;
+  --link: #6b9c89;
+  --code-bg: #202220;
 }
 
 * { box-sizing: border-box; }
@@ -51,9 +66,9 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--fg);
-  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  font-family: var(--sans);
   font-size: 16px;
-  line-height: 1.68;
+  line-height: 1.7;
   letter-spacing: 0;
 }
 
@@ -61,134 +76,193 @@ body {
   position: sticky; top: 0; z-index: 50;
   background: var(--bg);
   border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(6px);
 }
 .topbar-inner {
   max-width: 720px; margin: 0 auto;
-  display: flex; align-items: center; gap: 14px;
-  padding: 0 16px; height: 58px;
+  display: flex; align-items: center; gap: 18px;
+  padding: 0 16px; height: 52px;
   overflow-x: auto; white-space: nowrap;
 }
 .topbar a {
-  color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500;
-  padding: 6px 10px; border-radius: 8px; flex: 0 0 auto;
+  color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500;
+  font-family: var(--mono);
+  padding: 4px 2px; flex: 0 0 auto;
+  border-bottom: 2px solid transparent;
 }
-.topbar a:hover { color: var(--fg); background: var(--accent-soft); }
-.topbar a.brand { color: var(--accent); font-weight: 700; }
+.topbar a:hover { color: var(--fg); }
+.topbar a.brand {
+  color: var(--fg); font-weight: 600; font-family: var(--mono); font-size: 12.5px;
+  letter-spacing: 0.04em;
+}
 .theme-toggle {
-  margin-left: auto; border: 1px solid var(--border); background: var(--card-bg);
-  color: var(--fg); border-radius: 8px; padding: 6px 10px; font-size: 13px; cursor: pointer;
-  flex: 0 0 auto;
+  margin-left: auto; border: 1px solid var(--border); background: transparent;
+  color: var(--muted); padding: 4px 10px; font-size: 12px; cursor: pointer;
+  flex: 0 0 auto; font-family: var(--mono);
 }
+.theme-toggle:hover { color: var(--fg); border-color: var(--fg); }
 
 main.wrap {
   max-width: 1120px; margin: 0 auto; padding: 0 16px;
 }
 article {
-  max-width: 720px; margin: 0 auto; padding: 36px 0 80px;
+  max-width: 720px; margin: 0 auto; padding: 0 0 90px;
 }
 
-h1, h2, h3 { text-wrap: balance; line-height: 1.35; }
-h1 { font-size: clamp(1.7rem, 4vw, 2.5rem); margin: 4px 0 28px; font-weight: 900; }
-h2 {
-  font-size: clamp(1.25rem, 3vw, 1.55rem); margin: 48px 0 16px; font-weight: 700;
-  border-left: 5px solid var(--accent); padding-left: 14px; margin-left: -19px;
+/* 封面區：報告標頭 */
+.cover {
+  padding: 44px 0 28px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 36px;
 }
-h3 { font-size: 1.12rem; margin: 30px 0 12px; font-weight: 700; color: var(--accent); }
-p { margin: 0 0 16px; }
-strong { color: var(--fg); }
+.cover .kicker {
+  font-family: var(--mono); font-size: 12.5px; color: var(--accent);
+  margin: 0 0 14px;
+}
+.cover h1 {
+  font-family: var(--serif); font-weight: 700;
+  font-size: clamp(1.8rem, 5vw, 2.7rem); line-height: 1.28;
+  margin: 0 0 18px; text-wrap: balance;
+}
+.cover .meta {
+  font-family: var(--mono); font-size: 12.5px; color: var(--muted);
+  display: flex; flex-wrap: wrap; gap: 6px 16px;
+}
+.cover .meta span { white-space: nowrap; }
+
+h1, h2, h3 { text-wrap: balance; line-height: 1.35; }
+h2 {
+  font-family: var(--serif); font-weight: 700;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  margin: 52px 0 18px; padding-top: 22px;
+  border-top: 1px solid var(--border);
+}
+article > h2:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+
+/* A-G 段落：空心大寫字母 + 標籤，做成規格表分隔線 */
+h3 {
+  font-size: 0; margin: 34px 0 14px; line-height: 1;
+  display: flex; align-items: baseline; gap: 12px;
+}
+h3::before {
+  content: attr(data-letter);
+  font-family: var(--serif); font-size: 2.1rem; font-weight: 700;
+  color: transparent; -webkit-text-stroke: 1.3px var(--accent);
+  line-height: 1;
+}
+h3 .h3-label {
+  font-size: 0.95rem; font-weight: 700; color: var(--fg); font-family: var(--sans);
+}
+/* 沒有對應到 A-G 字母的 h3（罕見）退回一般樣式 */
+h3:not([data-letter]) { font-size: 1.05rem; font-weight: 700; color: var(--accent); font-family: var(--sans); }
+
+p { margin: 0 0 17px; max-width: 68ch; }
+strong { color: var(--fg); font-weight: 700; }
 a { color: var(--link); }
 
 blockquote {
-  margin: 16px 0; padding: 10px 18px; border-left: 3px solid var(--accent);
-  background: var(--accent-soft); border-radius: 0 8px 8px 0; color: var(--fg);
+  margin: 20px 0; padding: 4px 0 4px 20px; border-left: 2px solid var(--brass);
+  color: var(--fg); font-family: var(--serif); font-size: 1.02rem; font-style: italic;
 }
-blockquote p { margin: 4px 0; }
+blockquote p { margin: 6px 0; }
 
 table {
-  width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14.5px;
+  width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 14px;
   display: block; overflow-x: auto; white-space: normal;
 }
-th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
-th { background: var(--card-bg); font-weight: 700; }
+th, td { border: 1px solid var(--border); padding: 9px 11px; text-align: left; vertical-align: top; }
+th { background: var(--code-bg); font-weight: 700; font-family: var(--mono); font-size: 12.5px; }
 tr:nth-child(even) td { background: var(--card-bg); }
 
-ul, ol { padding-left: 1.4em; margin: 0 0 16px; }
-li { margin: 4px 0; }
+ul, ol { padding-left: 1.3em; margin: 0 0 17px; max-width: 68ch; }
+li { margin: 5px 0; }
 
-code { background: var(--code-bg); border-radius: 4px; padding: 1px 5px; font-size: 0.92em; }
-pre { background: var(--code-bg); border-radius: 10px; padding: 14px 16px; overflow-x: auto; }
+code { background: var(--code-bg); font-family: var(--mono); border-radius: 3px; padding: 1px 5px; font-size: 0.88em; }
+pre { background: var(--code-bg); padding: 14px 16px; overflow-x: auto; }
 pre code { background: none; padding: 0; }
 
+/* 品質等級／議程小標籤：分級印章感 */
+.grade {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--mono); font-size: 12px; font-weight: 600;
+  padding: 1px 8px; border: 1px solid currentColor; white-space: nowrap;
+}
+.grade-green { color: var(--accent); background: var(--accent-soft); }
+.grade-yellow { color: var(--brass); background: var(--brass-soft); }
+.grade-red { color: var(--rust); background: var(--rust-soft); }
+
 pre.mermaid {
-  background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
-  padding: 18px; overflow-x: auto; text-align: center;
+  background: var(--card-bg); border: 1px solid var(--border);
+  padding: 20px; overflow-x: auto; text-align: center;
   position: relative; cursor: zoom-in;
 }
 pre.mermaid::after {
-  content: "🔍 點圖放大";
-  position: absolute; top: 8px; right: 12px;
-  font-size: 12px; color: var(--muted); opacity: 0.75;
+  content: "點圖放大";
+  position: absolute; top: 10px; right: 14px;
+  font-family: var(--mono); font-size: 11px; color: var(--muted); opacity: 0.7;
   pointer-events: none;
 }
 pre.mermaid svg { max-width: 100%; height: auto; }
 
-figure { margin: 20px 0; }
+figure { margin: 22px 0; }
 figure img {
-  display: block; width: 100%; height: auto; border-radius: 12px;
+  display: block; width: 100%; height: auto;
   border: 1px solid var(--border); cursor: zoom-in;
 }
 figure figcaption {
-  text-align: center; font-size: 13px; color: var(--muted); margin-top: 8px;
+  font-family: var(--mono); text-align: left; font-size: 11.5px; color: var(--muted); margin-top: 8px;
 }
 
 .lightbox {
   display: none; position: fixed; inset: 0; z-index: 200;
-  background: rgba(20,18,15,0.9);
+  background: rgba(15,16,14,0.92);
   align-items: center; justify-content: center; padding: 28px;
   cursor: zoom-out;
 }
 .lightbox.is-open { display: flex; }
 .lightbox-inner {
-  background: var(--card-bg); border-radius: 14px; padding: 24px;
+  background: var(--card-bg); padding: 24px;
   max-width: 96vw; max-height: 92vh; overflow: auto; cursor: default;
+  border: 1px solid var(--border);
 }
 .lightbox-inner svg { max-width: none; width: auto; height: auto; }
-.lightbox-inner img { max-width: 92vw; max-height: 86vh; width: auto; height: auto; border-radius: 8px; display: block; }
+.lightbox-inner img { max-width: 92vw; max-height: 86vh; width: auto; height: auto; display: block; }
 .lightbox-hint {
-  position: absolute; top: 18px; right: 22px; color: rgba(255,255,255,0.75); font-size: 13px;
+  position: absolute; top: 18px; right: 22px; color: rgba(255,255,255,0.7);
+  font-family: var(--mono); font-size: 12px;
 }
 
-hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
 
 .day-nav {
-  display: flex; gap: 10px; margin: 18px 0 8px;
+  display: flex; gap: 0; margin: 0 0 8px;
 }
 .day-nav a {
-  border: 1px solid var(--border); border-radius: 999px; padding: 6px 16px;
-  font-size: 13.5px; color: var(--muted); text-decoration: none;
+  font-family: var(--mono); font-size: 12.5px; color: var(--muted); text-decoration: none;
+  padding: 6px 14px; border: 1px solid var(--border); border-right: none;
 }
-.day-nav a.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.day-nav a:last-child { border-right: 1px solid var(--border); }
+.day-nav a.active { background: var(--fg); color: var(--bg); border-color: var(--fg); }
 
 @media (max-width: 640px) {
-  article { padding: 24px 0 60px; }
-  h2 { margin-left: 0; border-left: none; padding-left: 0; border-top: 3px solid var(--accent); padding-top: 10px; }
+  article { padding: 0 0 60px; }
+  .cover { padding: 32px 0 22px; }
+  h2 { margin: 40px 0 14px; }
 }
 </style>
 </head>
 <body>
 <div class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="#top">AI Engineer Paris 2026</a>
+    <a class="brand" href="#top">AI·ENGINEER·PARIS·2026</a>
     <a href="day1.html">Day 1</a>
     <a href="day2.html">Day 2</a>
-    <button class="theme-toggle" id="themeToggle" type="button">🌓 深色模式</button>
+    <button class="theme-toggle" id="themeToggle" type="button">深色模式</button>
   </div>
 </div>
 <main class="wrap">
 <article id="top">
 <div class="day-nav"><a href="day1.html">Day 1 開幕場</a><a href="day2.html" class="active">Day 2 Main Stage</a></div>
-<h1 id="ai-engineer-paris-2026day-2main-stage-全日演講心得報告">AI Engineer Paris 2026（Day 2・Main Stage 全日）演講心得報告</h1>
+<div class="cover"><p class="kicker">AI ENGINEER PARIS 2026 · DEEP-GUIDE REPORT</p><h1 id="ai-engineer-paris-2026day-2main-stage-全日演講心得報告">AI Engineer Paris 2026（Day 2・Main Stage 全日）演講心得報告</h1><div class="meta"><span>Main Stage 全日 · 12 場演講 · 2026-09-24 · Paris</span></div></div>
 <h2 id="目錄">1. 目錄</h2>
 <ul>
 <li><a href="#pixel-robots">From Pixels to Robots: How we customize FLUX for production｜從像素到機器人：我們如何為正式環境客製化 FLUX（🟢）</a> — Jakob Pörschmann, Black Forest Labs</li>
@@ -322,21 +396,21 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <h2 id="各議程筆記">4. 各議程筆記</h2>
 <p><a id="pixel-robots"></a></p>
 <h2 id="from-pixels-to-robots-how-we-customize-flux-for-production從像素到機器人我們如何為正式環境客製化-flux">From Pixels to Robots: How we customize FLUX for production｜從像素到機器人：我們如何為正式環境客製化 FLUX</h2>
-<h3 id="a.-基本資訊">A. 基本資訊</h3>
+<h3 id="a.-基本資訊" data-letter="A"><span class="h3-label">基本資訊</span></h3>
 <ul>
 <li>講者：Jakob Pörschmann（Black Forest Labs，AI Solutions 團隊負責人，帶領 Forward Deployed Engineering 與 Solutions Engineering 團隊）</li>
 <li>時間與地點：Day2（9/24）09:30–10:00，Main Stage</li>
 <li>關鍵字：prompt upsampling、moderation as product surface、slider LoRA、world action model、FLUX 3 Action</li>
-<li>品質等級：🟢 高密度</li>
+<li>品質等級：<span class="grade grade-green">🟢 高密度</span></li>
 </ul>
 <p><strong>講者背景</strong>：Jakob Pörschmann 現任 Black Forest Labs（FLUX 影像/影片生成模型開發商，2024 年由前 Stability AI 成員 Robin Rombach、Andreas Blattmann、Patrick Esser 等人於德國 Freiburg 創立）的 AI Solutions 團隊負責人，駐點柏林，帶領 Forward Deployed Engineering 與 Solutions Engineering 團隊。公開資料顯示他長期關注雲端 ML 工程領域，曾以 Towards Data Science 作者身分發表技術文章，並在 Kaggle 等平台展示過 GCP 原生的模組化 Graph RAG 實作，顯示其背景橫跨資料工程與生成式 AI 應用落地。更詳細的過往任職經歷查無公開一手資料，以下內容以演講中的自我介紹與逐字稿脈絡為準。</p>
-<h3 id="b.-核心思想煉金">B. 核心思想煉金</h3>
+<h3 id="b.-核心思想煉金" data-letter="B"><span class="h3-label">核心思想煉金</span></h3>
 <p><strong>思想寶石</strong>：Jakob 把「客製化」拆解成推論管線上的六個介入點，其中最反直覺的兩個洞見是：一、圖片生成模型本身早已不是瓶頸，真正的瓶頸是「如何把設計規範翻譯成模型訓練分布聽得懂的語言」，這件事完全不需要重新訓練模型，只靠客製化 prompt upsampling 的 system prompt 就能解決（🔑 反直覺：多數人以為客製化生成品質要靠微調模型本身；⚡ 行動改變性：組織導入生成式媒體時應先投資在 prompt 層而非急著微調）。二、moderation 不是模型的附屬安全機制，而是決定使用者能看到什麼、看不到什麼的核心產品介面，甚至可以是商業模式本身（🔑 反直覺：安全防護通常被視為成本中心，這裡被定位為產品差異化槓桿；🔄 可遷移性：這個「安全策略即產品分眾工具」的思維可套用到任何內容生成類 SaaS，不限影像）。</p>
 <p><strong>關鍵引言</strong>：</p>
 <blockquote>
 <p>“The model technically can generate all of these different things, right? No problem. But really the design requirements end up being the bottleneck.” （模型技術上什麼都能生成，沒問題。但真正的瓶頸其實是設計規範本身。）</p>
 </blockquote>
-<h3 id="c.-內容摘要與結構分析">C. 內容摘要與結構分析</h3>
+<h3 id="c.-內容摘要與結構分析" data-letter="C"><span class="h3-label">內容摘要與結構分析</span></h3>
 <p>多數人聽到「客製化生成模型」，直覺反應是「那要重新訓練吧」——Jakob 在這場演講給的答案完全相反：FLUX 真正被客製化的戰場，幾乎都不在模型權重裡。</p>
 <p>問題最早浮現在一個機器生成主題的案例：主題本身是隨機產生的（可能是「洗碗機排水」這種怪題目），但輸出必須符合「主體置右、左側留白給文字」這種設計規範。模型技術上什麼都畫得出來，Jakob 講得很直白——“The model technically can generate all of these different things, right? No problem. But really the design requirements end up being the bottleneck。”問題從來不是模型會不會畫，而是沒有人把「設計規範」翻譯成模型訓練分布聽得懂的語言。解法不是微調，是把規範直接寫進 prompt upsampling 的 system prompt，讓一個 LLM 在使用者意圖與模型之間先做一次翻譯。從「完全亂碼」到「完全符合規範」，中間沒有動到任何模型權重。</p>
 <p>安全機制走的是同一套邏輯，只是換了一個更尖銳的說法：moderation 不是模型的附屬防護，是決定使用者看得到什麼、看不到什麼的產品介面，甚至可以直接是商業模式本身。這裡分岔出兩條路——便宜、模組化、依客戶類型（兒童平台、時尚品牌、影視工作室）彈性配置黑白名單的 config 層；以及把偏好直接烘進權重的 slider LoRA。後者的訓練方法說穿了很土炮：同一張人像圖，配兩種 caption，一次保守、一次性化，兩次訓練出的權重差值，就是「性化程度」這個抽象概念本身，推論時用負值 alpha 反套用即可壓低。結果是裸露偵測降 20%、68% 的人覺得影像更不性化，畫質沒掉。</p>
@@ -379,12 +453,12 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li><strong>Slider LoRA</strong>：一種只學習「單一抽象概念」的低秩微調（LoRA），透過對比兩種標註方式的訓練差值，萃取出可正可負套用的概念向量（如「性化程度」），用來精準調整模型行為而不影響其他能力。</li>
 <li><strong>World action model（世界行動模型）</strong>：不只生成像素，而是同時學習物理世界中動作與畫面因果關係的模型；FLUX 3 Action 讓同一個 transformer 同時 denoise 影片 latent 與機器人動作向量，兩者共享同一套「對世界的理解」。</li>
 </ul>
-<h3 id="d.-議程知識架構圖">D. 議程知識架構圖</h3>
+<h3 id="d.-議程知識架構圖" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
 <img src="images/pixel-robots.png" alt="FLUX 推論管線六大客製化環節" />
 <figcaption aria-hidden="true">FLUX 推論管線六大客製化環節</figcaption>
 </figure>
-<h3 id="e.-實務應用與案例解析">E. 實務應用與案例解析</h3>
+<h3 id="e.-實務應用與案例解析" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
 <p><strong>實務案例</strong>：</p>
 <ol type="1">
 <li>機器生成主題插圖（客戶未具名）：主題完全由機器隨機產生（如「洗碗機排水」），需符合「主體置右、乾淨畫面、左側留白給文字」等設計規範。解法不是換模型，而是把設計規範直接寫進 prompt upsampling 的 system prompt，讓「使用者意圖」「設計規範」「模型訓練分布」三者對齊。</li>
@@ -393,7 +467,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 </ol>
 <p><strong>技術/工具/方法</strong>：Prompt upsampling（system prompt 客製化）、Config 層 moderation（safety tolerance、類別黑白名單）、Slider LoRA（概念向量萃取）、Variational Autoencoder（影片 latent 編碼）、Denoising transformer（同時處理影片與動作向量）、LeRobot 開源機械手臂平台。</p>
 <p><strong>經驗教訓</strong>：Jakob 明確點出「moderation 的模組化 config 路徑」在多數情況下勝過「權重內建」路徑——後者雖然技術上很酷，但訓練成本高且是靜態的（模型更新就要重練），只有在客戶要求完全離線部署、不能接受外部 moderation API 依賴時才值得投入。這是一個「技術上更精緻不等於商業上更划算」的教訓。</p>
-<h3 id="f.-深度洞察與反思">F. 深度洞察與反思</h3>
+<h3 id="f.-深度洞察與反思" data-letter="F"><span class="h3-label">深度洞察與反思</span></h3>
 <p><strong>未來趨勢與跨域連結</strong>：</p>
 <ul>
 <li>Jakob 把「生成式媒體」與「機器人控制」放進同一套客製化框架，暗示未來影像/影片生成模型與具身智能模型的界線會持續模糊——同一個 transformer backbone 只要換一種「動作向量」的 tokenization 方式，就能從畫圖工具變成機器人大腦。</li>
@@ -404,7 +478,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li>具體反例或對立觀點：這場演講呈現的是 Black Forest Labs（廠商）視角，強調「客製化很簡單、很便宜、迭代很快」。但業界對 prompt upsampling 這類方案也有批評，例如 OpenAI、Google 等大廠在其影像模型上同樣採用系統性 prompt rewriting，卻也因此被詬病「使用者輸入的 prompt 與實際送進模型的 prompt 不透明」，造成生成結果難以精準控制、除錯困難——這是 prompt upsampling 方案在可解釋性上的代價，Jakob 並未在演講中提及。</li>
 <li>前提條件與適用邊界：Slider LoRA 「用負值 alpha 反向套用」的技巧，前提是該抽象概念（如性化程度）本身在 caption 層面可以被乾淨地對比出來；如果概念混雜（例如同時想調整「暴力」又想保留「動作張力」），差值萃取的效果會打折扣。FLUX 3 Action 的六軸動作向量做法也高度綁定 SO-101 這款機械手臂的具身結構，換一款自由度不同的機器人，動作向量的維度與正規化方式都需要重新設計，不是即插即用。</li>
 </ul>
-<h3 id="g.-個人啟發與行動方案">G. 個人啟發與行動方案</h3>
+<h3 id="g.-個人啟發與行動方案" data-letter="G"><span class="h3-label">個人啟發與行動方案</span></h3>
 <p><strong>思維啟發</strong>：</p>
 <ul>
 <li>對台灣中型組織的 IT/資安/AI 負責人而言，這場演講挑戰了一個常見假設——「要客製化 AI 生成結果，一定要花大錢微調模型」。</li>
@@ -420,21 +494,21 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <hr />
 <p><a id="voice-orb"></a></p>
 <h2 id="generating-identity-at-scale-elevenlabs-ai-driven-orb大規模打造視覺身分elevenlabs-的-ai-驅動球體">Generating Identity at Scale, ElevenLabs’ AI-Driven Orb｜大規模打造視覺身分：ElevenLabs 的 AI 驅動球體</h2>
-<h3 id="a.-基本資訊-1">A. 基本資訊</h3>
+<h3 id="a.-基本資訊-1" data-letter="A"><span class="h3-label">基本資訊</span></h3>
 <ul>
 <li>講者：Dorian Lods（ElevenLabs，Creative Experience Engineer，法籍，現駐巴黎）</li>
 <li>時間與地點：Day2（9/24）10:00–10:30，Main Stage</li>
 <li>關鍵字：generative design pipeline、voice-to-visual mapping、shader 即時渲染、debug at scale、Picasso 服務</li>
-<li>品質等級：🟢 高密度</li>
+<li>品質等級：<span class="grade grade-green">🟢 高密度</span></li>
 </ul>
 <p><strong>講者背景</strong>：Dorian Lods 現任 ElevenLabs 的 Creative Experience Engineer，是巴黎籍的資深 Creative Developer 與 Design Engineer，專攻生成式 AI、即時互動與沉浸式 WebGL 體驗。加入 ElevenLabs 前，他在 Dogstudio/DEPT® 帶領 Creative Development 與 Creative AI 團隊，曾直接與 OpenAI、Google、Adidas、BMW、Yuga Labs 等品牌合作，作品累積超過 50 座產業獎項，包含 Awwwards 2019 年度網站大獎與 16 次月度最佳網站。他於 2017–2019 年在巴黎 GOBELINS 取得互動創新工程與管理碩士學位。演講中提及他先前曾為 OpenAI 語音模型手工打造過一顆 orb，這段經歷來自逐字稿自述。</p>
-<h3 id="b.-核心思想煉金-1">B. 核心思想煉金</h3>
+<h3 id="b.-核心思想煉金-1" data-letter="B"><span class="h3-label">核心思想煉金</span></h3>
 <p><strong>思想寶石</strong>：Dorian 的核心洞見是創作者角色的根本轉變——從「手工打造單一輸出」變成「設計產生輸出的條件（系統）」，這個轉變不只是效率提升，而是徹底改變了品管的單位：當你要對 4000 萬個獨特輸出的每一個都負責時，「debug 單一漂亮的 demo」毫無意義，你必須「大規模 debug」，用內部審查工具在小規模先驗證系統的統計分佈是否符合品牌規範，而不是盯著幾個精選案例自我感覺良好（🔑 反直覺：多數團隊做 demo 時只挑最好看的案例展示，但 Dorian 團隊反而建立審查工具去看「規模化後會不會崩」；⚡ 行動改變性：任何要規模化部署生成式 AI 視覺/內容系統的團隊，都應該把「大規模抽樣審查」列為上線前必要步驟，而非只做少量人工挑選的展示）。</p>
 <p><strong>關鍵引言</strong>：</p>
 <blockquote>
 <p>“Instead of designing them now I designed the condition that produce it.” （現在的我不是在設計輸出本身，而是在設計產生輸出的條件。）</p>
 </blockquote>
-<h3 id="c.-內容摘要與結構分析-1">C. 內容摘要與結構分析</h3>
+<h3 id="c.-內容摘要與結構分析-1" data-letter="C"><span class="h3-label">內容摘要與結構分析</span></h3>
 <p>幾年前，Dorian 為 OpenAI 的語音模型手刻過一顆 orb——全 shader 手工打造，花了數週工時，目的單一，就是把它做到最漂亮。這套工作方式在 ElevenLabs 完全撐不住，因為他現在要面對的不是一顆球，是四千萬顆：每一個聲音都要有一顆屬於自己的、視覺上獨一無二的 orb。</p>
 <p>“Instead of designing them now I designed the condition that produce it。” 這句話聽起來像場面話，但它其實標記了一個角色的斷裂——手工打造單一輸出，和設計「產生輸出的條件」，是兩種完全不同的工作。前者你對一個作品負責，後者你對一個統計分佈負責。Dorian 團隊先從 20 萬個最受歡迎的聲音樣本裡萃取音高、能量、表現力，結果發現分佈並不均勻——深沉的聲音多半拿去說故事，高能量、卡通式的聲音反而少——這個不均勻，直接決定了視覺設計要覆蓋的範圍，也是團隊後來承認的一個早期陷阱：規模化生成如果不做資料校正，很容易長得越來越像。</p>
 <p>真正逼出方法論轉變的是財務部門的一句話：每個聲音都即時生成一次新圖，一次幾毛錢，乘以四千萬，太貴。團隊的答案不是去優化演算法，是換架構——預先生成一張巨型圖集，每個聲音只是從裡面裁切、旋轉、變化出一個「看似獨立」的結果。這個決定省下超過 360 萬美元，速度提升 10 到 15 倍，單一聲音的視覺生成時間壓到 3 秒以內。</p>
@@ -478,12 +552,12 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li><strong>Atlas（圖集）</strong>：把大量小圖預先合成進一張大圖的技術，透過裁切、旋轉不同區域來產生「看似獨立」的多個輸出，藉此大幅降低即時生成的運算成本。</li>
 <li><strong>Picasso</strong>：ElevenLabs 內部把 orb 生成流程包裝成的共用雲端服務／API，供 App、官網、iOS/Android、11 Music 等所有觸點統一呼叫。</li>
 </ul>
-<h3 id="d.-議程知識架構圖-1">D. 議程知識架構圖</h3>
+<h3 id="d.-議程知識架構圖-1" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
 <img src="images/voice-orb.png" alt="ElevenLabs Orb 大規模生成架構" />
 <figcaption aria-hidden="true">ElevenLabs Orb 大規模生成架構</figcaption>
 </figure>
-<h3 id="e.-實務應用與案例解析-1">E. 實務應用與案例解析</h3>
+<h3 id="e.-實務應用與案例解析-1" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
 <p><strong>實務案例</strong>：</p>
 <ol type="1">
 <li>4000 萬聲音的 backfill（回填）專案：在新系統上線後，需要對平台上既有的 4000 萬個聲音全部重新生成向下相容的 orb，這個回填流程跑了數天，Dorian 形容是「壓力很大的時刻」，最終成功且未中斷服務。</li>
@@ -491,7 +565,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 </ol>
 <p><strong>技術/工具/方法</strong>：音訊特徵萃取（pitch/energy/expressiveness）、合成資料集訓練專屬 LoRA、WebGL（前端互動）轉 OpenGL（伺服器端渲染，用於無法跑 shader 的觸點如預覽圖/縮圖/動態 MP4）、Atlas 圖集架構、Picasso 內部雲端服務、內部大規模審查工具。</p>
 <p><strong>經驗教訓</strong>：Dorian 明確點出一個常見陷阱——「你精心 debug 出來的少數幾個 demo 案例很漂亮，但一旦跑到全規模就會垮」，因此建議「不要害怕在小規模先跑多次生成，確認每一個輸出都能被你認可」。這個教訓的本質是：生成式系統的品管單位應該是「統計分佈」而不是「精選樣本」。</p>
-<h3 id="f.-深度洞察與反思-1">F. 深度洞察與反思</h3>
+<h3 id="f.-深度洞察與反思-1" data-letter="F"><span class="h3-label">深度洞察與反思</span></h3>
 <p><strong>未來趨勢與跨域連結</strong>：</p>
 <ul>
 <li>Dorian 把這套經驗類比為「和程式碼那邊已經發生的事情一樣，現在也發生在設計端」——呼應同場稍早提到的 agentic coding / software factories 趨勢：工程師從寫程式碼變成寫「產生程式碼的系統（agent、pipeline）」，設計師同樣從畫圖變成寫「產生圖像的系統」。</li>
@@ -502,7 +576,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li>具體反例或對立觀點：Dorian 呈現的是「品牌一致性 + 規模化」兩者可以兼得的成功案例，但業界對「用生成式系統取代手工設計」也有明確的批評聲音，例如許多設計社群（如 It’s Nice That 等設計媒體的評論者）長期質疑「演算法生成的視覺身分」容易失去手工設計中「刻意的不完美」與作者意圖，最終導向視覺趨同（所有品牌的生成式視覺看起來都很像）。Dorian 的方案透過「聲音特徵驅動視覺差異」部分緩解了這個問題，但他自己也承認早期版本一度「distributed unevenly」（深沉聲音扎堆），顯示規模化生成確實有陷入視覺同質化的風險，需要持續用資料分析去校正。</li>
 <li>前提條件與適用邊界：這套方法論的前提是「輸出物件本身有一個天然可量化的特徵來源」（此處是聲音的音高、能量、表現力），如果應用到沒有這種天然特徵映射的領域（例如純粹依賴主觀品味的產品，如口味、香氣），「用資料驅動視覺差異」的做法就難以直接套用，需要先建立一套可靠的特徵抽取邏輯。</li>
 </ul>
-<h3 id="g.-個人啟發與行動方案-1">G. 個人啟發與行動方案</h3>
+<h3 id="g.-個人啟發與行動方案-1" data-letter="G"><span class="h3-label">個人啟發與行動方案</span></h3>
 <p><strong>思維啟發</strong>：</p>
 <ul>
 <li>這場演講對讀者角色最大的啟發是——當組織規劃任何「用生成式 AI 大量產出內容/視覺/文案」的專案時，應該從一開始就把「大規模品質審查機制」和「成本架構」納入設計，而不是等到 demo 成功、真正上線後才手忙腳亂應對財務或品管問題。</li>
@@ -518,21 +592,21 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <hr />
 <p><a id="vllm-transformers"></a></p>
 <h2 id="how-a-transformers-model-loads-in-vllmtransformers-模型如何載入-vllm">How a Transformers Model Loads in vLLM｜Transformers 模型如何載入 vLLM</h2>
-<h3 id="a.-基本資訊-2">A. 基本資訊</h3>
+<h3 id="a.-基本資訊-2" data-letter="A"><span class="h3-label">基本資訊</span></h3>
 <ul>
 <li>講者：Harry Mellor（Hugging Face，ML Engineer，vLLM maintainer）</li>
 <li>時間與地點：Day2（9/24）10:30–11:00，Main Stage</li>
 <li>關鍵字：transformers modeling backend、vLLM、模型可攜性、mixin 架構、torch.fx 自動轉換</li>
-<li>品質等級：🟢 高密度（技術深度極高，屬於推論引擎底層工程）</li>
+<li>品質等級：<span class="grade grade-green">🟢 高密度</span>（技術深度極高，屬於推論引擎底層工程）</li>
 </ul>
 <p><strong>講者背景</strong>：Harry Mellor 現任 Hugging Face 的 ML Engineer，同時是開源 LLM 推論引擎 vLLM 的維護者（maintainer），在 vLLM 社群長期負責前端與模型相容性相關的程式碼審查與開發（可見於其 GitHub 帳號 hmellor 在 vllm-project/vllm 上的持續提交紀錄）。公開資料顯示他加入 Hugging Face 之前曾任職於 Graphcore（英國 AI 晶片公司），並有牛津大學（University of Oxford）相關背景；更精確的任職起訖時間查無公開詳細資料。他近期在 Hugging Face 官方部落格發表過關於 vLLM transformers modeling backend「native speed」的技術文章，內容與本場演講主題一致。</p>
-<h3 id="b.-核心思想煉金-2">B. 核心思想煉金</h3>
+<h3 id="b.-核心思想煉金-2" data-letter="B"><span class="h3-label">核心思想煉金</span></h3>
 <p><strong>思想寶石</strong>：這場演講最反直覺的洞見是——「模型定義」與「推論效能」本來被視為綁死在一起的東西（要嘛你的模型有專屬引擎實作、跑得快；要嘛用通用相容層、跑得慢），但 Hugging Face 與 vLLM 團隊證明這兩者可以解耦：只要 transformers 的模型程式碼遵循特定的「可被自動置換」結構（用 mixin 拆分能力、用 torch.fx 偵測子結構），一個完全沒有 vLLM 專屬實作的新模型架構，也能在載入時被「手術式替換」內部關鍵模組（attention、MoE 路由、QKV 投影），達到跟原生 vLLM 實作幾乎相同的效能（🔑 反直覺：多數人假設「相容層＝效能打折」，這裡證明相容層可以做到接近原生效能；⚡ 行動改變性：評估任何跨框架相容性方案時，不該預設「相容＝犧牲效能」，應該先確認對方是否採用了類似的「結構化偵測＋置換」設計）。</p>
 <p><strong>關鍵引言</strong>：</p>
 <blockquote>
 <p>“The model definition, the config and the weights all come from transformers and then the runtime and all the performance critical modules come from vLLM. So you kind of get a best of both.” （模型定義、設定檔與權重都來自 transformers，而執行期與所有效能關鍵模組都來自 vLLM，等於你同時拿到兩邊最好的部分。）</p>
 </blockquote>
-<h3 id="c.-內容摘要與結構分析-2">C. 內容摘要與結構分析</h3>
+<h3 id="c.-內容摘要與結構分析-2" data-letter="C"><span class="h3-label">內容摘要與結構分析</span></h3>
 <p>推論引擎這個領域有一條長期不言自明的共識：要嘛你的模型有專屬實作、跑得快，要嘛你用通用相容層、跑得慢——魚與熊掌不能兼得。Harry 這場演講要講的，就是這條共識正在鬆動的證據。</p>
 <p>理由很現實。一是模型本來就是用 transformers 訓練的，沒有人想為每個推論引擎再重寫一次；二是強化學習訓練與 rollout 如果分別用兩套模型實作，訓練和推論兩邊很容易「drift」，跑出不一致的結果，這對訓練穩定性是個隱患；三是最直白的一條——現在有 14 種模型架構，vLLM 唯一支援的方式就是透過這個 backend，而且這個數字還在漲。換句話說，不是每個模型都有專屬引擎可以挑，相容層很多時候是唯一選項。</p>
 <p>問題是相容層要怎麼做到不犧牲效能。答案藏在兩層設計裡。第一層是把模型能力拆成可疊加的 mixin——像 Qwen3-VL 這種多模態 MoE 模型，實際載入的類別是 MoE mixin、Multimodal mixin、Causal mixin 疊在同一個 base class 上組出來的，不是為每種模型組合各寫一個類別。第二層更關鍵：用 torch.fx 在載入當下自動偵測模型的子結構，一段一段做手術式替換——attention 換成 vLLM 的 shim 以取得 KV cache 管理能力，MoE 專家與路由如果結構夠規則就整塊替換成 vLLM 的 runner，QKV 投影被 fuser 偵測後換成平行線性層，RMSNorm 也換掉，好讓 vLLM 的 torch.compile 融合優化認得出來。“The model definition, the config and the weights all come from transformers and then the runtime and all the performance critical modules come from vLLM. So you kind of get a best of both.” ——模型定義是別人的，效能是自己的，兩邊都不用讓步。</p>
@@ -577,12 +651,12 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li><strong>torch.fx</strong>：PyTorch 的圖形擷取（graph capture）工具，用來在程式碼層面自動偵測模型的結構模式（例如「這是一個 QKV 投影」「這是一個可完整替換的 MoE 區塊」），據此決定要不要替換成 vLLM 專屬實作。</li>
 <li><strong>KV cache（Key-Value cache）</strong>：Transformer 推論時儲存先前 token 的 key/value 向量以避免重複計算的機制，是 LLM 推論延遲與吞吐量的關鍵瓶頸點。</li>
 </ul>
-<h3 id="d.-議程知識架構圖-2">D. 議程知識架構圖</h3>
+<h3 id="d.-議程知識架構圖-2" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
 <img src="images/vllm-transformers.png" alt="Transformers 模型載入 vLLM 的手術式替換流程" />
 <figcaption aria-hidden="true">Transformers 模型載入 vLLM 的手術式替換流程</figcaption>
 </figure>
-<h3 id="e.-實務應用與案例解析-2">E. 實務應用與案例解析</h3>
+<h3 id="e.-實務應用與案例解析-2" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
 <p><strong>實務案例</strong>：以 Qwen3-VL-MoE 模型為例，Harry 現場走過完整載入流程：</p>
 <ul>
 <li>從命令列指定 <code>--model-impl transformers</code> 強制使用相容層（因為該模型其實有 vLLM 原生實作，刻意用它來示範）</li>
@@ -592,14 +666,14 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <p>這些進階效能功能全部在「沒有為這個模型專門寫 vLLM 實作」的前提下達成。</p>
 <p><strong>技術/工具/方法</strong>：PagedAttention、continuous batching、torch.fx 圖形偵測、torch.compile（含對視覺編碼器的獨立圖編譯）、MoE 內部路由（internal routing，整塊替換）vs. 外部路由（external routing，僅替換專家運算本身）、MLA attention（透過額外 fuser 取得 KV cache 壓縮效益）、Eagle / Eagle 3 推測解碼、pooling/classification 任務支援。</p>
 <p><strong>經驗教訓</strong>：這套架構的關鍵設計哲學是「用結構化偵測取代逐模型手寫」——如果每新增一個模型架構就要為 vLLM 手刻一份專屬實作，維護成本會隨模型數量線性甚至超線性成長；透過 mixin 分解能力＋torch.fx 自動偵測子結構，vLLM 團隊把「新增模型支援」的邊際成本大幅壓低，這也是為什麼演講中提到「有 14 種架構唯一的支援方式就是這個 backend，且數字持續在漲」。</p>
-<h3 id="f.-深度洞察與反思-2">F. 深度洞察與反思</h3>
+<h3 id="f.-深度洞察與反思-2" data-letter="F"><span class="h3-label">深度洞察與反思</span></h3>
 <p><strong>未來趨勢與跨域連結</strong>：這場演講揭示的「用結構化偵測＋模組置換取代重複實作」的方法論，其實可以遷移到任何「多個框架/多個執行環境需要支援同一份業務邏輯」的場景——例如企業內部如果有多套系統（測試環境、正式環境、不同雲端供應商）都要跑同一套核心演算法，與其為每個環境重寫一份，不如思考能否用類似「定義與執行分離、用結構偵測自動轉譯」的架構降低維護成本，這是一個可以套用到系統架構決策的通用思維模式，不限於 AI 推論引擎。</p>
 <p><strong>批判性思考</strong>：</p>
 <ul>
 <li>具體反例或對立觀點：Harry 展示的是相容層「接近原生效能」的正面案例，但他自己也承認這是「not recommended」（不建議）的平行策略示範，且明確指出「今天有 14 種架構『只能』透過這個 backend 支援」——反面來說，這也代表對這 14 種架構而言，vLLM 團隊尚未投入資源做專屬優化，效能與功能覆蓋度（例如某些量化方案、某些平行策略組合）不一定能與有專屬實作的熱門模型（如 Llama、Qwen 系列）完全對齊。vLLM 社群與 SGLang 等競品推論引擎的維護者也持續在比較「通用相容層」與「專屬實作」在極端吞吐量場景下的差距，這不是一個已經完全解決的問題。</li>
 <li>前提條件與適用邊界：這套自動置換機制的前提是模型程式碼「結構夠規則、可被 torch.fx 靜態分析辨識」——例如 MoE 區塊要嘛完整符合 vLLM 預期的內部路由模式（可整塊替換為 runner），要嘛退回只能替換專家運算本身的外部路由模式（效能較低但保留路由邏輯彈性）。如果模型作者寫了高度客製化、無法被 fx 追蹤的動態控制流程，這套自動化的效能紅利就會打折扣。</li>
 </ul>
-<h3 id="g.-個人啟發與行動方案-2">G. 個人啟發與行動方案</h3>
+<h3 id="g.-個人啟發與行動方案-2" data-letter="G"><span class="h3-label">個人啟發與行動方案</span></h3>
 <p><strong>思維啟發</strong>：</p>
 <ul>
 <li>對讀者角色而言，這場演講最大的啟發不是技術細節本身，而是評估「開源模型部署方案」時多一個判準——當團隊要導入一個新開源模型架構時，不要只問「vLLM 支不支援」，還要進一步確認「是靠原生實作還是相容層支援」，因為這會直接影響能拿到的優化功能（KV cache offloading、量化、LoRA 等）與長期效能表現。</li>
@@ -615,21 +689,21 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <hr />
 <p><a id="stripe-ai-economy"></a></p>
 <h2 id="inside-the-ai-economy-what-stripes-data-reveals深入-ai-經濟stripe-資料揭露了什麼">Inside the AI economy: What Stripe’s data reveals｜深入 AI 經濟：Stripe 資料揭露了什麼</h2>
-<h3 id="a.-基本資訊-3">A. 基本資訊</h3>
+<h3 id="a.-基本資訊-3" data-letter="A"><span class="h3-label">基本資訊</span></h3>
 <ul>
 <li>講者：Arielle Le Bail（Stripe，Head of Product, AI and Startups）</li>
 <li>時間與地點：Day2（9/24）11:30–12:00，Main Stage</li>
 <li>關鍵字：全球即時擴張、usage-based pricing、agent 作為買家、詐欺防治、channel sales</li>
-<li>品質等級：🟢 高密度</li>
+<li>品質等級：<span class="grade grade-green">🟢 高密度</span></li>
 </ul>
 <p><strong>講者背景</strong>：Arielle Le Bail 現任 Stripe 的 Head of Product, EMEA, AI and Startups，主責法國、南歐與 Benelux 地區的產品線，同時探索 AI 公司如何在用量擴張時設計出「營收與客戶價值對齊」的商業模式，常駐巴黎。她畢業於法國 ESSEC 商學院。公開資料顯示她也是一位西洋棋選手，曾兩度獲得法國該量級的全國冠軍，並以 Arielle LB 為名創作電子音樂。更詳細的職涯歷程（例如加入 Stripe 前的完整經歷）查無公開詳細資料，以下內容以演講中的自我介紹與逐字稿脈絡為準。</p>
-<h3 id="b.-核心思想煉金-3">B. 核心思想煉金</h3>
+<h3 id="b.-核心思想煉金-3" data-letter="B"><span class="h3-label">核心思想煉金</span></h3>
 <p><strong>思想寶石</strong>：這場演講最具行動改變性的洞見是「你的下一個買家可能是一個 agent，而不是人類」——Stripe 觀察到自家公開技術文件在 2026 年夏天出現一個交叉點：被 agent 讀取的次數首度超過被人類讀取的次數，這代表產品的可發現性、文件結構、甚至定價呈現方式，都必須同時為「人類決策心理」與「agent 的資訊擷取邏輯」兩種完全不同的消費者設計（🔑 反直覺：數十年的產品與定價設計建立在人類心理學之上，如「定價 9.99 而非 10 元」，但 agent 買家根本不在意這種心理錨定；⚡ 行動改變性：企業應立即檢視自家產品文件、API 說明、定價頁面是否對 agent 友善可讀，這是一個可以馬上動手的具體改變）。第二個洞見是「定價正在從『對齊成本』轉向『對齊價值』」：同一個 AI 工具被工程師拿來做程式碼審查、被一般使用者拿來取代 Google 搜尋，運算成本可能相近，但創造的價值天差地遠，因此傳統依成本定價的邏輯已經失靈，頭部 AI 公司正轉向訂閱＋用量積分（credits）的混合模式，靠訂閱維繫關係、靠用量反映真實價值（🔄 可遷移性：這個「同一單位成本、不同單位價值」的定價邏輯，可以遷移到任何有異質使用情境的數位服務）。</p>
 <p><strong>關鍵引言</strong>：</p>
 <blockquote>
 <p>“Our public documentation today is more read by agents than by humans.” （我們的公開文件，如今被 agent 讀取的次數已經超過被人類讀取的次數。）</p>
 </blockquote>
-<h3 id="c.-內容摘要與結構分析-3">C. 內容摘要與結構分析</h3>
+<h3 id="c.-內容摘要與結構分析-3" data-letter="C"><span class="h3-label">內容摘要與結構分析</span></h3>
 <p>三個月前，一般消費者每個月花在 AI 服務上的錢大約是 180 美元；現在是 360 美元。翻倍只花了一季，這個數字已經逼近歐洲人每個月電話、網路、串流服務加起來的總支出。Arielle 手上握著 Stripe 處理全球 1.6% GDP 交易量的第一手資料，她要說的是：這種速度不是例外，是新常態，而且舊的成長劇本已經跟不上。</p>
 <p>過去最快的 SaaS 公司，第一年進 25 國、第三年進 51 國，這已經算業界標竿。現在頭部 AI 公司第一年就進 42 國、第三年 120 國——「先把產品做好、再想辦法賣到海外」這個線性順序，根本沒有發生，全球化跟建置是同時進行的。Gamma 第一年營收破億美元，多數還來自美國以外市場；頭部 AI 公司平均 48% 的營收來自海外，幾個月前這個數字還是 33%。而且在地化不是錦上添花，是直接換算成營收的槓桿——在地化定價帶來 18% 更高的跨境營收，每加一個當地支付方式，該國轉換率至少提升 7%。</p>
 <p>定價邏輯也在鬆動。同一個 AI 工具，工程師拿去做程式碼審查，一般人拿去取代 Google 搜尋，運算成本可能差不多，創造的價值卻天差地遠——照成本定價的老邏輯，在這裡直接失靈。Forbes AI50 榜單裡三分之二的公司已經改用某種用量計費，但沒有人是一次砍掉重練：像 Poke 這種十年老牌開發工具公司，先維持原有訂閱制留住既有客戶關係，等 AI 功能真正變成核心價值後才疊加用量積分，目前正朝十億美元 ARR 邁進。訂閱維繫關係，用量反映真實價值，兩件事不衝突。</p>
@@ -681,12 +755,12 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li><strong>Pay-as-you-go abuse（先用量後棄卡）</strong>：使用者在計費週期內大量消耗按量付費的服務額度，卻在帳單產生前讓付款方式失效，導致商家已發生成本卻無法收款。</li>
 <li><strong>Agent readiness（對 agent 友善的可發現性）</strong>：產品、文件、API、結帳流程是否能被 AI agent（而非僅人類）正確理解、比較、並自主完成購買決策的程度。</li>
 </ul>
-<h3 id="d.-議程知識架構圖-3">D. 議程知識架構圖</h3>
+<h3 id="d.-議程知識架構圖-3" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
 <img src="images/stripe-ai-economy.png" alt="AI 經濟五大模式" />
 <figcaption aria-hidden="true">AI 經濟五大模式</figcaption>
 </figure>
-<h3 id="e.-實務應用與案例解析-3">E. 實務應用與案例解析</h3>
+<h3 id="e.-實務應用與案例解析-3" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
 <p><strong>實務案例</strong>：</p>
 <ol type="1">
 <li>Claude + Stripe MCP 整合示範：Arielle 現場示範開發者只需在 Claude 內對話「幫我設定含發票與訂閱的付款功能」，Claude 便會透過 Stripe MCP 工具自動判斷該用 Checkout（而非 Stripe Elements）、詢問客戶所在地區以判斷稅務規則、建議啟用 Stripe Tax、自動建立沙箱環境並安全存取 API 金鑰，全程不需離開開發介面。</li>
@@ -695,7 +769,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 </ol>
 <p><strong>技術/工具/方法</strong>：Stripe MCP（Model Context Protocol 整合）、Stripe Checkout、Stripe Tax（自動稅務規則判定）、Stripe 沙箱環境 CLI 自動建立、即時用量監控與詐欺訊號偵測系統。</p>
 <p><strong>經驗教訓</strong>：Poke 案例的關鍵成功因素是「不躁進」——先用訂閱制維繫既有客戶關係與黏著度，等 AI 功能真正成為產品核心價值後才疊加用量計費，而非一次性推翻既有商業模式；這對正在猶豫是否要「全面轉向用量計費」的組織是一個務實的參考路徑。</p>
-<h3 id="f.-深度洞察與反思-3">F. 深度洞察與反思</h3>
+<h3 id="f.-深度洞察與反思-3" data-letter="F"><span class="h3-label">深度洞察與反思</span></h3>
 <p><strong>未來趨勢與跨域連結</strong>：</p>
 <ul>
 <li>Arielle 提出的「產品需同時為人類與 agent 兩種買家設計」趨勢，若持續發展，可能重塑企業對「使用者體驗（UX）」的定義範疇——UX 團隊未來或許需要新增「agent 體驗（Agent Experience, AX）」職能，專門負責讓 API 文件、定價頁面、結帳流程對自動化決策系統友善。</li>
@@ -706,7 +780,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li>具體反例或對立觀點：Arielle 呈現的高速全球化、高倍數成長案例（Lovable、Anthropic、Gamma）都是極端成功的頭部公司，這類「倖存者偏差」式的案例選取容易讓聽眾高估這套劇本的普適成功率。實務上，多位新創投資人與營運顧問（例如常在 SaaS 圈被引用的 David Sacks 等人）也持續警告「過早全球化」（premature internationalization）是新創公司常見的失敗模式之一——在尚未把單一市場的產品市場契合度（PMF）做扎實前就分散資源進入多國市場，反而稀釋團隊執行力。Arielle 演講中並未討論這類失敗案例的比例或篩選存活偏差。</li>
 <li>前提條件與適用邊界：「48% 營收來自海外」「42 國進入」這類資料的前提是這些公司的產品本身具備語言/文化低摩擦的特性（多為開發者工具、生產力軟體、通用型 AI 助手），對於高度依賴在地法規、在地服務網絡的產業（如醫療、金融特許業務、實體物流相關服務）而言，全球化的速度與這裡呈現的劇本不具直接可比性，法規遵循與在地化投入仍是硬性前提，無法單靠「加一個在地支付方式」就達成。</li>
 </ul>
-<h3 id="g.-個人啟發與行動方案-3">G. 個人啟發與行動方案</h3>
+<h3 id="g.-個人啟發與行動方案-3" data-letter="G"><span class="h3-label">個人啟發與行動方案</span></h3>
 <p><strong>思維啟發</strong>：這場演講對讀者角色最大的挑戰是既有的「使用者＝人類」預設——組織在規劃產品文件、API 說明、甚至對外溝通素材時，可能從未考慮過「這份內容會不會被一個 agent 讀取並據此做採購或整合決策」，而 Stripe 的交叉點資料顯示這已經是現在進行式，不是未來式。</p>
 <p><strong>角色化行動建議</strong>：</p>
 <ol type="1">
@@ -718,21 +792,21 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <hr />
 <p><a id="streaming-voice"></a></p>
 <h2 id="from-research-to-production-how-we-rebuilt-a-streaming-model從研究到正式環境我們如何重建一個串流模型">From research to production: How we rebuilt a streaming model｜從研究到正式環境：我們如何重建一個串流模型</h2>
-<h3 id="a.-基本資訊-4">A. 基本資訊</h3>
+<h3 id="a.-基本資訊-4" data-letter="A"><span class="h3-label">基本資訊</span></h3>
 <ul>
 <li>講者：Hervé Bredin（pyannoteAI，Chief Scientist &amp; Co-founder）</li>
 <li>時間與地點：Day2（9/24）12:00–12:30，Main Stage</li>
 <li>關鍵字：speaker diarization、streaming inference、latency decomposition、look-ahead、batch vs real-time</li>
-<li>品質等級：🟢 高密度</li>
+<li>品質等級：<span class="grade grade-green">🟢 高密度</span></li>
 </ul>
 <p><strong>講者背景</strong>：Hervé Bredin 自 2025 年 3 月起擔任 pyannoteAI 共同創辦人暨 Chief Science Officer，此前是法國國家科學研究中心（CNRS）研究科學家（目前留職停薪）。他主導開發開源 pyannote.audio 工具包，是語者分離研究社群的核心人物之一，該工具在 HuggingFace 上每月下載量達數千萬次，全球有超過十萬名開發者使用。</p>
-<h3 id="b.-核心思想煉金-4">B. 核心思想煉金</h3>
+<h3 id="b.-核心思想煉金-4" data-letter="B"><span class="h3-label">核心思想煉金</span></h3>
 <p><strong>思想寶石</strong>：講者把「400 毫秒延遲」拆解成緩衝、網路、推論、演算法 look-ahead、非同步處理五個獨立來源，證明「延遲」從來不是單一數字，而是一組可以分別議價的參數（🔄 可遷移到任何即時系統的效能盤點；⚡ 直接改變採購/驗收即時 AI 服務時該問的問題）。更根本的是，他點出 batch diarization 與 streaming diarization 雖然輸入輸出一模一樣，卻是兩個完全不同的機器學習問題——streaming 版本因為看不到未來，連「全域 clustering」這種 batch 版本的核心解法都必須整個換掉（🔑 挑戰「把批次模型包進一個迴圈就等於即時系統」的常見假設；⚡ 改變技術團隊評估「即時化」專案工時的方式）。</p>
 <p><strong>關鍵引言</strong>：</p>
 <blockquote>
 <p>“Batch and real-time diarization are actually two different machine learning problems. They have very different constraints. Even though the input and the output are the same, solving it needs different approaches.” （批次與即時的語者分離其實是兩個不同的機器學習問題。雖然輸入輸出一樣，限制條件完全不同，解法也必須不同。）</p>
 </blockquote>
-<h3 id="c.-內容摘要與結構分析-4">C. 內容摘要與結構分析</h3>
+<h3 id="c.-內容摘要與結構分析-4" data-letter="C"><span class="h3-label">內容摘要與結構分析</span></h3>
 <p><strong>演講主旨</strong>：</p>
 <p>400 毫秒——聽起來像是把研究論文硬塞進產品時程的妥協數字，但 Hervé Bredin 攤開的真相恰好相反：這個數字不是被砍出來的，而是精算出來的。批次版的語者分離模型 pyannote community-1 早已是產業標準，HuggingFace 上每月被下載上千萬次，三行程式碼就能跑完整套流程。問題是，把這套邏輯直接塞進一個迴圈、宣稱自己「即時化」了，是這場演講第一個要戳破的錯覺。</p>
 <p>Bredin 講得很直白：批次與即時語者分離雖然輸入輸出長得一模一樣，卻是兩個不同的機器學習問題。批次版本可以看完整段錄音再回頭判斷「這裡換了一個人說話」；即時版本沒有這種後見之明，連批次版本仰賴的全域 clustering 都必須整個換掉，改成一邊聽一邊修正的增量式作法。早期的開源實作 diart 把延遲壓到五秒左右，但準確率因為看不到未來而掉了一截——這不是工程沒做好，是問題本身變難了。</p>
@@ -785,12 +859,12 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li><strong>Look-ahead</strong>：即時系統為了判斷「當下這個時間點是否發生講者變換」，必須多等一小段未來音訊才能下判斷，這段等待即 look-ahead，是延遲的主要來源。</li>
 <li><strong>Diart</strong>：pyannoteAI CTO Juan Manuel Coria 開發的開源即時語者分離工具，是增量 clustering 的早期實作。</li>
 </ul>
-<h3 id="d.-議程知識架構圖-4">D. 議程知識架構圖</h3>
+<h3 id="d.-議程知識架構圖-4" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
 <img src="images/streaming-voice.png" alt="即時語者分離 400 毫秒延遲拆解" />
 <figcaption aria-hidden="true">即時語者分離 400 毫秒延遲拆解</figcaption>
 </figure>
-<h3 id="e.-實務應用與案例解析-4">E. 實務應用與案例解析</h3>
+<h3 id="e.-實務應用與案例解析-4" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
 <p><strong>實務案例</strong>：</p>
 <ul>
 <li>現場 demo：講者與共同創辦人現場對話，展示串流語者分離即時標出講者、偵測重疊發言與 backchannel（如「Please don’t back channel」互動橋段），驗證 400ms 延遲在真實互動中的可用性。</li>
@@ -804,7 +878,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li>從批次到即時不是單純「調小 chunk size」就能解決——講者明確指出這是研究團隊投入大量心力在模型架構（更大模型）與 loss function 設計上才達到與批次同等準確率。</li>
 <li>单純縮小 block size 反而會增加要處理的區塊數量，讓推論延遲上升，形成新的權衡問題。</li>
 </ul>
-<h3 id="f.-深度洞察與反思-4">F. 深度洞察與反思</h3>
+<h3 id="f.-深度洞察與反思-4" data-letter="F"><span class="h3-label">深度洞察與反思</span></h3>
 <p><strong>未來趨勢與跨域連結</strong>：</p>
 <ul>
 <li>講者指出即時語者分離的下一步應用是「監看會議中的互動品質」（如標記某人打斷別人太多次、或某人講話時間過長）。</li>
@@ -816,7 +890,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li>具體反例或對立觀點：講者為了達到 400ms 低延遲，選擇投入大量工程心力做客製化模型架構與 loss function 設計，這種「針對特定延遲目標做深度工程優化」的路線，與 Richard Sutton 在著名文章《The Bitter Lesson》中主張的「長期而言，通用且可擴展的簡單方法（更多算力、更多資料）終將勝過人為精心設計的專門技巧」立場相左。若採信 Sutton 的論點，pyannoteAI 這類高度客製化的延遲工程投資，長期可能被規模更大、更通用的端到端語音模型取代，而非靠架構巧思持續領先。</li>
 <li>前提條件與適用邊界：400ms 的延遲數字建立在「client 離 Cloudflare 邊緣節點夠近」「batch size 約 32 條串流可以達成」等假設上；若使用場景是網路品質差的地區，或併發串流數遠低於 32（無法有效 batch），實際延遲會顯著偏離這個數字。此外，這套方法解決的是「講者分離」，並不包含語音辨識（ASR）本身的延遲，實際語音助理產品的端到端延遲會更高。</li>
 </ul>
-<h3 id="g.-個人啟發與行動方案-4">G. 個人啟發與行動方案</h3>
+<h3 id="g.-個人啟發與行動方案-4" data-letter="G"><span class="h3-label">個人啟發與行動方案</span></h3>
 <p><strong>思維啟發</strong>：</p>
 <ul>
 <li>對台灣中型組織的 IT/AI 負責人而言，這場演講提醒一件常被忽略的事：向上管理層報告「AI 功能延遲多少毫秒」時，若只拿到供應商給的單一數字，等於拿到一個黑盒子。</li>
@@ -832,21 +906,21 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <hr />
 <p><a id="ai-infra"></a></p>
 <h2 id="building-the-infrastructure-behind-the-next-generation-of-ai打造支撐下一代-ai-的基礎設施">Building the infrastructure behind the next-generation of AI｜打造支撐下一代 AI 的基礎設施</h2>
-<h3 id="a.-基本資訊-5">A. 基本資訊</h3>
+<h3 id="a.-基本資訊-5" data-letter="A"><span class="h3-label">基本資訊</span></h3>
 <ul>
 <li>講者：Yann Leger（Mistral，VP of Compute）× Adolf Hohl（NVIDIA，Senior Manager Solution Architect）對談</li>
 <li>時間與地點：Day2（9/24）14:00–14:30，Main Stage</li>
 <li>關鍵字：training/inference 融合、NVL72、rack-scale computing、caching、agentic workload、歐洲主權 AI 算力</li>
-<li>品質等級：🟡 中密度（對談形式偏發散，僅保留通過三道關卡的內容，其餘背景脈絡帶過）</li>
+<li>品質等級：<span class="grade grade-yellow">🟡 中密度</span>（對談形式偏發散，僅保留通過三道關卡的內容，其餘背景脈絡帶過）</li>
 </ul>
 <p><strong>講者背景</strong>：Yann Leger 是雲端服務商 Koyeb 的共同創辦人暨 CEO，2026 年 Koyeb 併入 Mistral AI 後轉任 Mistral VP Cloud（會議簡介列為 VP of Compute），負責 Mistral 雲端運算部門；創立 Koyeb 前曾任法國雲端服務商 Scaleway 的 EVP。Adolf Hohl 現為 NVIDIA EMEA 區域資深經理，領導汽車產業解決方案架構團隊，專注自駕車開發測試與企業 AI 所需的 GPU 加速基礎設施，持有德國弗萊堡大學 IT 安全博士學位，加入 NVIDIA 前曾任職於 NetApp 與 SAP AG。</p>
-<h3 id="b.-核心思想煉金-5">B. 核心思想煉金</h3>
+<h3 id="b.-核心思想煉金-5" data-letter="B"><span class="h3-label">核心思想煉金</span></h3>
 <p><strong>思想寶石</strong>：過去業界預設「訓練用最新硬體、推論用舊一代硬體」是兩種各自獨立的基礎設施類別，但兩位講者認為經濟誘因正把兩者推向同一個可動態調度的資源池——固定切分的資源池必然產生閒置浪費，長期而言訓練叢集會被回收再利用來跑推論（🔑 挑戰「訓練/推論基礎設施天生分離」的常見規劃假設；⚡ 直接影響 IT 負責人在簽 GPU 採購或雲端合約時，該優先爭取「可彈性重新配置」的條款，而非鎖死在單一用途的容量承諾）。</p>
 <p><strong>關鍵引言</strong>：</p>
 <blockquote>
 <p>“If you make a pool, it’s static, so in each pool you have some waste… I expect the infrastructures for both domains goes more together hand in hand.” （如果你把資源池固定切分，每個池子都會有閒置浪費……我預期訓練與推論的基礎設施會越來越合而為一。）</p>
 </blockquote>
-<h3 id="c.-內容摘要與結構分析-5">C. 內容摘要與結構分析</h3>
+<h3 id="c.-內容摘要與結構分析-5" data-letter="C"><span class="h3-label">內容摘要與結構分析</span></h3>
 <p><strong>演講主旨</strong>：</p>
 <p>曾經很清楚的一條界線正在消失：訓練用最新一代硬體、推論用退役下來的舊設備，這是業界規劃基礎設施時的預設分工。Yann Leger 與 Adolf Hohl 在這場對談裡指出，這條界線撐不住了——固定切分的資源池必然產生閒置浪費，經濟誘因正把訓練與推論的基礎設施推向同一個可以動態調度的資源池：一座叢集前兩年拿去訓練，後三四年動態改配給推論，是接下來會越來越常見的資產配置方式。</p>
 <p>這個轉向背後，是兩件事同時在發生。一是硬體規模本身在往上疊：Adolf 用自己從 Pascal、Volta 世代加入 NVIDIA 至今七八年的經歷說明，NVL72 這種把 72 顆 GPU 用高速互聯整合成單一運算單元的機櫃層級系統，代表運算單位從單機一路上升到機櫃層級——「data center is the computer」不是口號，是目前最經濟的高度平行訓練方案的實際樣貌。二是推論的營收正在追上先前訓練投資的規模，過去擔心推論無法規模化變現的疑慮，隨著 agentic workflow（像是軟體工程日常在用的 AI 工具）興起而逐漸消散。</p>
@@ -897,12 +971,12 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li><strong>Token maxing / Outcome maxing</strong>：前者指以消耗 token 量為目標（易導致浪費），後者指以單位 token 產生的商業成果為目標，是講者主張的正確 KPI 框架。</li>
 <li><strong>KV cache / distributed caching</strong>：agentic 應用需要長上下文重複使用，跨請求、跨分散式伺服器的快取機制正變得越來越關鍵。</li>
 </ul>
-<h3 id="d.-議程知識架構圖-5">D. 議程知識架構圖</h3>
+<h3 id="d.-議程知識架構圖-5" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
 <img src="images/ai-infra.png" alt="AI 基礎設施走向：驅動力、走向、經濟目標" />
 <figcaption aria-hidden="true">AI 基礎設施走向：驅動力、走向、經濟目標</figcaption>
 </figure>
-<h3 id="e.-實務應用與案例解析-5">E. 實務應用與案例解析</h3>
+<h3 id="e.-實務應用與案例解析-5" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
 <p><strong>實務案例</strong>：Mistral 目前正在興建自有資料中心容量，明年將達 200 百萬瓦（MW），到 2030 年目標 1 GW，主要位於歐洲，且目前 Mistral 的模型已在自有基礎設施上訓練完成——作為「五年內歐洲會有前沿模型」這個預測的具體佐證。</p>
 <p><strong>技術/工具/方法</strong>：NVL72 rack-scale 系統、動態資源池重新配置（訓練叢集轉推論用途）、跨分散式系統的 KV cache 共享。</p>
 <p><strong>經驗教訓</strong>：兩位講者都承認，基礎設施規劃必須同時考慮：</p>
@@ -911,7 +985,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li>「用途會隨時間演變」（同一叢集可能前期訓練、後期轉推論）</li>
 </ul>
 <p>代表資本支出決策不能只看當下的單一工作負載型態。</p>
-<h3 id="f.-深度洞察與反思-5">F. 深度洞察與反思</h3>
+<h3 id="f.-深度洞察與反思-5" data-letter="F"><span class="h3-label">深度洞察與反思</span></h3>
 <p><strong>未來趨勢與跨域連結</strong>：</p>
 <ul>
 <li>講者預期「訓練/推論資源融合」與「跨系統快取」會是未來一年的重點戰場。</li>
@@ -923,7 +997,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li>前提條件與適用邊界：「訓練/推論融合可降低浪費」的論點成立的前提，是組織同時有大量訓練需求與大量推論需求、且具備足夠的軟體編排能力做動態調度（Yann 也承認這「需要大量軟體」才能做到動態重新配置）。對多數台灣中型組織而言，既沒有自建訓練叢集的規模，也不太可能面臨「叢集閒置」的資源調度問題，這段洞察對這類組織的直接參考價值有限，更多是理解雲端供應商未來定價與容量策略走向的背景知識。</li>
 </ul>
 <p>（註：對談中「Rubin 效率提升」「歐洲主權算力時程」等段落多為單方陳述的產業展望，缺乏可查證資料支撐，已依品質三道關卡標準略過，僅作背景脈絡帶過。）</p>
-<h3 id="g.-個人啟發與行動方案-5">G. 個人啟發與行動方案</h3>
+<h3 id="g.-個人啟發與行動方案-5" data-letter="G"><span class="h3-label">個人啟發與行動方案</span></h3>
 <p><strong>思維啟發</strong>：</p>
 <ul>
 <li>這場對談提醒 IT/AI 負責人不要用「這是訓練用的」或「這是推論用的」這種靜態標籤去規劃基礎設施採購，而應思考未來 1-2 年內同一批資源是否有可能因為用途改變而需要重新調度。</li>
@@ -939,21 +1013,21 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <hr />
 <p><a id="latency-inference"></a></p>
 <h2 id="the-low-latency-inference-engineering-playbook低延遲推論工程實戰手冊">The low-latency inference engineering playbook｜低延遲推論工程實戰手冊</h2>
-<h3 id="a.-基本資訊-6">A. 基本資訊</h3>
+<h3 id="a.-基本資訊-6" data-letter="A"><span class="h3-label">基本資訊</span></h3>
 <ul>
 <li>講者：Charles Frye（Modal，Inference Engineering）</li>
 <li>時間與地點：Day2（9/24）14:30–15:00，Main Stage</li>
 <li>關鍵字：speculative decoding、quantization、KV cache routing、低延遲推論、query planning</li>
-<li>品質等級：🟢 高密度</li>
+<li>品質等級：<span class="grade grade-green">🟢 高密度</span></li>
 </ul>
 <p><strong>講者背景</strong>：Charles Frye 2020 年於加州大學柏克萊分校取得博士學位，研究主題為神經網路最佳化的幾何性質，現任 Modal 技術幕僚，負責 GPU 教育、推論基準測試與分散式基礎設施相關工作，主筆撰寫 Modal 的《GPU Glossary》。</p>
-<h3 id="b.-核心思想煉金-6">B. 核心思想煉金</h3>
+<h3 id="b.-核心思想煉金-6" data-letter="B"><span class="h3-label">核心思想煉金</span></h3>
 <p><strong>思想寶石</strong>：多數工程團隊優化 LLM 推論時，本能會先衝向「GPU kernel 調校」這種最技術性、最有成就感的環節，但講者攤開的實測優化順序完全相反——speculative decoding（可帶來 4-8 倍加速）&gt; quantization（線性降低成本但改變模型輸出分布）&gt; CPU/host 端效能除錯（約 50%-2 倍加速）&gt; 跨副本路由（KV cache 命中與否可差 60 倍延遲）&gt; GPU kernel（僅剩幾個百分點空間）（🔑 直接推翻「效能優化該先修 GPU」的工程直覺；⚡ 改變團隊分配優化工時的優先順序，先做低成本高報酬的事）。另一個反直覺結論：想要「最高互動性」（tokens/sec/user）的低延遲服務，實際上只需要 8 張以內的 GPU 就能達到，遠不需要動輒 40-64 張 GPU 的巨型互聯叢集——這與「越大越好」的算力採購直覺完全相反（🔑 挑戰對低延遲服務規模的預設想像；🔄 可遷移到任何資源規劃決策：先問清楚「你要優化的指標到底是什麼」，而非直接假設更大規模更好；⚡ 直接影響採購/租用 GPU 容量的決策）。</p>
 <p><strong>關鍵引言</strong>：</p>
 <blockquote>
 <p>“If you want the highest tokens per second per user, you actually want to be all the way down here [with] four or eight GPUs… which is a huge operational win.” （如果你要的是每位使用者最高的每秒 token 數，你其實只需要落在四到八張 GPU 這個區間——這是一個很大的營運上的勝利。）</p>
 </blockquote>
-<h3 id="c.-內容摘要與結構分析-6">C. 內容摘要與結構分析</h3>
+<h3 id="c.-內容摘要與結構分析-6" data-letter="C"><span class="h3-label">內容摘要與結構分析</span></h3>
 <p><strong>演講主旨</strong>：</p>
 <p>一個團隊拿到「把推論延遲降下來」的任務，多數人會直覺地衝去調 GPU kernel——那是整個推論鏈路裡技術含量看起來最高、最有成就感的一塊。Charles Frye 在這場分享裡攤開 Modal 團隊實測出來的優化順序，把這個直覺整個打翻：speculative decoding 能帶來四到八倍加速，其次是改變模型輸出分布但線性降成本的 quantization，再來是效果常被低估的 CPU/host 端除錯（約五成到兩倍加速），接著是路由——KV cache 命中與否可以讓延遲差到六十倍，最後才輪到 GPU kernel，這裡現有的 kernel 已經逼近「光速」上限，只剩幾個百分點的空間。</p>
 <p>順序顛倒，賭注也顛倒。想要每位使用者最高的每秒 token 數，直覺會覺得該堆更多 GPU，Frye 說恰好相反：落在四到八張 GPU 的區間反而是最佳解，遠不需要動輒四十到六十四張互聯的巨型叢集——這是一個很大的營運上的勝利，而不是妥協。推論工作負載依衡量指標分三類，優化策略完全不同：決策／分類模型看成本與速度，聊天與 agent 類看每秒每位使用者的 token 數，批次資料處理看每塊錢能換到多少 token。</p>
@@ -1014,12 +1088,12 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li><strong>CUDA graph capture</strong>：把一連串 GPU kernel 呼叫預先記錄下來，之後一次性啟動，減少 CPU 端逐一發送指令造成的延遲空隙（bubble/stall）。</li>
 <li><strong>Query planning（查詢規劃）</strong>：資料庫系統中決定如何有效率執行一個查詢的技術，講者將其概念套用到「含大量 LLM 呼叫的 SQL 查詢」上。</li>
 </ul>
-<h3 id="d.-議程知識架構圖-6">D. 議程知識架構圖</h3>
+<h3 id="d.-議程知識架構圖-6" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
 <img src="images/latency-inference.png" alt="低延遲推論優化六步驟優先順序" />
 <figcaption aria-hidden="true">低延遲推論優化六步驟優先順序</figcaption>
 </figure>
-<h3 id="e.-實務應用與案例解析-6">E. 實務應用與案例解析</h3>
+<h3 id="e.-實務應用與案例解析-6" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
 <p><strong>實務案例</strong>：</p>
 <ul>
 <li>Moonshot AI 的 Kimi 模型部署：透過客製化調校，在多個平台（含 OpenRouter）大規模服務，吞吐量與單用戶速度同時大幅提升。</li>
@@ -1032,14 +1106,14 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li>用 GPU 功耗與溫度當作最簡單的利用率指標（未達滿功耗代表 GPU 沒被充分餵飽），再用 profiler 深入定位問題（例如一顆 GPU 因為 NUMA/socket 配置錯誤而拖慢全體）。</li>
 <li>舉出一個看似微不足道的軟體修正（把重複配置的 CUDA IPC handle 改成用 Python dict 快取）就帶來 10% 加速，說明基礎設施優化不一定需要深奧的 GPU 知識。</li>
 </ul>
-<h3 id="f.-深度洞察與反思-6">F. 深度洞察與反思</h3>
+<h3 id="f.-深度洞察與反思-6" data-letter="F"><span class="h3-label">深度洞察與反思</span></h3>
 <p><strong>未來趨勢與跨域連結</strong>：講者把「查詢規劃」這個資料庫領域數十年累積的技術，直接套用到 LLM 推論引擎上，這種跨領域方法論遷移（把成熟領域的最佳化思路套用到新興領域）本身就是一個值得留意的模式，未來很可能出現更多「資料庫思維 + LLM 推論」的混合基礎設施。</p>
 <p><strong>批判性思考</strong>：</p>
 <ul>
 <li>具體反例或對立觀點：同日稍早的 Yann Leger（Mistral）與 Adolf Hohl（NVIDIA）對談中，兩人主張的重點基礎設施方向是 NVL72 這類機櫃層級、72 顆 GPU 緊密互聯的大型系統，強調「data center is the computer」；這與 Charles Frye 在本場明確指出「追求最高互動性的低延遲服務，只需要 4-8 張 GPU」形成直接張力。兩者並非互斥——NVL72 針對的是訓練與高吞吐推論的規模效益，Frye 談的是互動式低延遲場景——但這提醒聽眾：同一場會議中不同講者強調的「基礎設施最佳解」高度取決於他們預設的工作負載類型，沒有放諸四海皆準的「正確規模」。</li>
 <li>前提條件與適用邊界：Speculative decoding 的加速效果高度依賴「模型輸出有結構性、可預測性」（如固定的 chat template、重複出現的使用者引言），若應用場景是高度開放式、低重複性的生成任務（如創意寫作），猜測命中率會下降，加速效果可能大打折扣。Quantization 的成本效益也不是無條件成立——講者明確提到量化會改變模型輸出分布，需要重新驗證「智慧是否仍然足夠」，代表這項優化不能不做品質回歸測試就直接上線。</li>
 </ul>
-<h3 id="g.-個人啟發與行動方案-6">G. 個人啟發與行動方案</h3>
+<h3 id="g.-個人啟發與行動方案-6" data-letter="G"><span class="h3-label">個人啟發與行動方案</span></h3>
 <p><strong>思維啟發</strong>：</p>
 <ul>
 <li>這場演講對 IT/AI 負責人最大的提醒是：內部或委外團隊若把大量工時投入在「聽起來最高深」的 GPU kernel 調校，很可能是選錯了戰場。</li>
@@ -1055,21 +1129,21 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <hr />
 <p><a id="edge-ai"></a></p>
 <h2 id="eyes-up-edge-ai-innovation抬頭看邊緣-ai-創新">Eyes Up: Edge AI Innovation｜抬頭看：邊緣 AI 創新</h2>
-<h3 id="a.-基本資訊-7">A. 基本資訊</h3>
+<h3 id="a.-基本資訊-7" data-letter="A"><span class="h3-label">基本資訊</span></h3>
 <ul>
 <li>講者：Dominic Pajak（Arm，Senior Director）</li>
 <li>時間與地點：Day2（9/24）15:00–15:30，Main Stage</li>
 <li>關鍵字：edge inference、hybrid routing、intent economy、on-device model compression、task-aware routing</li>
-<li>品質等級：🟢 高密度</li>
+<li>品質等級：<span class="grade grade-green">🟢 高密度</span></li>
 </ul>
 <p><strong>講者背景</strong>：Dominic Pajak 現任 Arm Senior Director, Edge AI，持有英國里茲大學電腦科學博士學位。2024–2025 年曾任 Synaptics AI 軟體部門主管，主導打造獲 CES 2025 矚目的裝置端語音助理開發框架；更早曾參與 Arduino 與 Google 合作打造嵌入式 AI 開發套件。</p>
-<h3 id="b.-核心思想煉金-7">B. 核心思想煉金</h3>
+<h3 id="b.-核心思想煉金-7" data-letter="B"><span class="h3-label">核心思想煉金</span></h3>
 <p><strong>思想寶石</strong>：講者把「邊緣 AI」重新定義成一個路由問題而非單純的模型縮小問題——真正的價值不在於把模型塞進裝置裡，而在於建立一層判斷機制，在真正呼叫完整模型之前，先用便宜訊號（例如比對 prompt 與過往成功/失敗案例的 embedding 相似度）判斷這個任務該留在裝置端還是該轉發到更強的雲端模型（🔑 挑戰「edge vs cloud」二選一的常見框架；🔄 可遷移到任何地端/雲端混合架構決策，不只限於消費性機器人；⚡ 直接改變 IT 負責人規劃地端與雲端 AI 分工時的技術選型方向）。另一個值得留意的觀察：Raspberry Pi 上 YOLO26 優化後跑出更高 FPS，但講者特別指出這種「跑滿四核心才拿到的 FPS 數字」在實際產品中並不理想——真正的產品價值是優化後省下的 CPU 核心餘裕，讓裝置還能同時跑其他應用邏輯（🔑 挑戰「效能 benchmark 數字越高越好」的直覺；⚡ 改變評估供應商 benchmark 時該追問的問題）。</p>
 <p><strong>關鍵引言</strong>：</p>
 <blockquote>
 <p>“The intention economy is understanding what people want and providing solutions to it without them having to spell out everything.” （意圖經濟指的是理解人們真正想要什麼，並在他們不用把一切講清楚的情況下就提供解決方案。）</p>
 </blockquote>
-<h3 id="c.-內容摘要與結構分析-7">C. 內容摘要與結構分析</h3>
+<h3 id="c.-內容摘要與結構分析-7" data-letter="C"><span class="h3-label">內容摘要與結構分析</span></h3>
 <p><strong>演講主旨</strong>：</p>
 <p>GPT-3.5 等級的能力，現在可以壓縮進大約十億參數的模型，塞進一支智慧型手機或一台 Raspberry Pi。Dominic Pajak 在演講中引用的一項基準測試更誇張：一個僅有 4B active parameter 的 MoE 模型，在 GPQA Diamond 分數上已經超越約一年半前的 Claude Sonnet 3.5——他自己也提醒 benchmark 並不完美，只能當趨勢參考，但這個落差本身就說明了邊緣裝置正在發生什麼事。</p>
 <p>真正的框架轉變不在模型變小，而在人機互動的方向整個反過來了。從打孔卡、鍵盤、滑鼠到觸控螢幕，過去八十年每一代介面都讓操作更容易，但都仍然要求使用者把自己的意圖翻譯成機器聽得懂的步驟。Pajak 稱接下來這個階段為意圖經濟——理解人們真正想要什麼，不需要他們把一切講清楚就提供解決方案。而邊緣裝置要接住這件事，靠的不是把整顆大模型硬塞進去，而是建立一層判斷機制：在真正呼叫完整模型之前，先用便宜訊號——例如比對 prompt 與過往成功或失敗案例的 embedding 相似度——判斷這個任務該留在裝置端，還是該轉發到更強的雲端模型。</p>
@@ -1121,12 +1195,12 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li><strong>Decoder-state probing</strong>：一種在模型已經產出草稿回應後，利用其內部解碼狀態來判斷是否該轉發到更強模型的技術，屬於「先跑再判斷」的策略，成本高於單純比對 embedding。</li>
 <li><strong>NVL72（對照組概念，來自同場前一講）</strong>：與本場強調「Raspberry Pi 等級裝置也能跑完整 agent 應用」形成規模光譜的兩端。</li>
 </ul>
-<h3 id="d.-議程知識架構圖-7">D. 議程知識架構圖</h3>
+<h3 id="d.-議程知識架構圖-7" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
 <img src="images/edge-ai.png" alt="邊緣裝置地端／雲端動態路由決策流程" />
 <figcaption aria-hidden="true">邊緣裝置地端／雲端動態路由決策流程</figcaption>
 </figure>
-<h3 id="e.-實務應用與案例解析-7">E. 實務應用與案例解析</h3>
+<h3 id="e.-實務應用與案例解析-7" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
 <p><strong>實務案例</strong>：</p>
 <ul>
 <li>Reachi Mini（Hugging Face × Pollen Robotics，法國製造的桌上型機器人）：內建 ARM Cortex-M0 與 Raspberry Pi Compute Module 4，講者本人參與其 beta 測試計畫，示範用 Mistral Ministral 3 在裝置端完成語音辨識、工具呼叫（讀取識別證資訊）與語音合成回應，全程未連雲端大型模型。</li>
@@ -1135,7 +1209,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 </ul>
 <p><strong>技術/工具/方法</strong>：LiteLLM / RouteLLM（開源地端-雲端路由起點）、embedding 相似度比對／calibrated uncertainty／decoder-state probing（三種路由判斷策略，成本與準確度依序遞增）、Arm AI Portal（新發布的最佳化模型與效能工具早期存取方案）、SME2 指令集優化（Gemma 系列模型上市即優化案例）。</p>
 <p><strong>經驗教訓</strong>：講者以 NASA Voyager 1 為思想實驗——這台已飛出太陽系的探測器，幾年前記憶體晶片故障，NASA 花了約 22.5 小時的單程通訊延遲、僅約 100 bits/秒的頻寬完成遠端修補。講者藉此提出：未來嵌入式系統中的 agent 角色定位應該是「監督者」而非「執行者」——在設計者未預期的異常發生時協助自主排除，而非取代既有的核心控制邏輯。這個極端案例凸顯了在通訊延遲/頻寬受限環境下，地端自主判斷能力的價值。</p>
-<h3 id="f.-深度洞察與反思-7">F. 深度洞察與反思</h3>
+<h3 id="f.-深度洞察與反思-7" data-letter="F"><span class="h3-label">深度洞察與反思</span></h3>
 <p><strong>未來趨勢與跨域連結</strong>：</p>
 <ul>
 <li>講者提出「意圖經濟」與「agentic embedded systems（具代理能力的嵌入式系統）」概念，預期未來會有大量原本只做感測與致動的工業/商用嵌入式系統，被賦予「supervisor」角色的 agent 能力，用來處理設計者未預期的異常。</li>
@@ -1146,7 +1220,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li>具體反例或對立觀點：本場「把推論盡量留在裝置端」的邊緣優先哲學，與同日稍早 Yann Leger／Adolf Hohl 那場主張的集中式資源融合（見 ai-infra 場筆記的 NVL72／「data center is the computer」）站在基礎設施光譜的兩端——那場論述隱含的假設是規模夠大的集中算力池能帶來更好的經濟效益與持續進步的模型能力，Dominic Pajak 這裡則是反過來賭：效率、隱私、以及使用者對資料去向的選擇權，值得用較弱的模型換取。兩者並非誰對誰錯，是不同工作負載與商業模式下各自合理的選擇。</li>
 <li>前提條件與適用邊界：講者引用的「4B 參數 MoE 模型超越 Claude Sonnet 3.5 GPQA Diamond 分數」這類比較，本人也親自提醒「benchmark 並不完美」，只能視為趨勢方向，不能直接當作「小模型已經全面等同大模型能力」的證據——GPQA 這類知識問答基準未必能反映複雜多步驟推理、長上下文理解等能力差距。此外，地端優先的路由策略要成立，前提是組織具備能力建立「校準過的信心分數」機制（embedding 比對或 uncertainty 校準），若缺乏這層判斷邏輯，貿然把任務都留在地端執行，反而可能因為模型能力不足而產生更差的使用者體驗。</li>
 </ul>
-<h3 id="g.-個人啟發與行動方案-7">G. 個人啟發與行動方案</h3>
+<h3 id="g.-個人啟發與行動方案-7" data-letter="G"><span class="h3-label">個人啟發與行動方案</span></h3>
 <p><strong>思維啟發</strong>：</p>
 <ul>
 <li>這場演講提醒 IT/AI 負責人，「要不要上雲端大型模型」不該是一次性的架構決策，而應該設計成一個任務層級的動態路由問題。</li>
@@ -1162,21 +1236,21 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <hr />
 <p><a id="agentic-map-reduce"></a></p>
 <h2 id="closing-the-distance-agentic-map-reduce-for-coding縮短差距程式開發的-agentic-map-reduce">Closing the Distance: Agentic Map-Reduce for Coding｜縮短差距：程式開發的 Agentic Map-Reduce</h2>
-<h3 id="a.-基本資訊-8">A. 基本資訊</h3>
+<h3 id="a.-基本資訊-8" data-letter="A"><span class="h3-label">基本資訊</span></h3>
 <ul>
 <li>講者：Yannis Psorakis（Cognition，VP of Engineering，歐洲營運據點負責人）</li>
 <li>時間與地點：Day2（9/24）15:30–16:00，Main Stage</li>
 <li>關鍵字：agentic map-reduce、codebase-wide 任務、deterministic selector、context pollution、chained vulnerability</li>
-<li>品質等級：🟢 高密度</li>
+<li>品質等級：<span class="grade grade-green">🟢 高密度</span></li>
 </ul>
 <p><strong>講者背景</strong>：Yannis Psorakis 在 Cognition 負責歐洲的工程團隊，加入前曾在核心銀行軟體公司 Thought Machine 擔任 Engineering Director。他的學術與研究背景長期聚焦機器學習、貝氏推論（Bayesian Inference）與網路分析，並延伸到金融科技領域的應用，早年於牛津大學相關的機器人與機器學習研究單位發表過論文。</p>
-<h3 id="b.-核心思想煉金-8">B. 核心思想煉金</h3>
+<h3 id="b.-核心思想煉金-8" data-letter="B"><span class="h3-label">核心思想煉金</span></h3>
 <p><strong>思想寶石</strong>：單一 agent 面對 codebase-wide 任務時會被搜尋成本、context 污染與模糊的停止標準三面夾殺；Cognition 把分散式運算的 map-reduce 概念搬進 agentic coding，先用便宜的 deterministic selector 把大型 codebase 切成有界（bounded）區域，再平行跑 sub-agent 分析、最後由主 agent 做去重與跨區域關聯推理，甚至能抓出「單獨看是低風險、組合起來卻是 critical exploit」的鏈式漏洞。（🔑 反直覺：多數團隊直覺是丟給更強、context window 更長的單一 agent 去啃大範圍任務，而不是先做一層確定性的預處理；⚡ 行動改變性：可以重新設計 agent workflow，讓 deterministic 程式碼先做切分，agent 只負責 bounded 的深度分析）</p>
 <p><strong>關鍵引言</strong>：</p>
 <blockquote>
 <p>“Single agent problem does not solve very large codebase-wide tasks.” （單一 agent 解決不了真正大範圍的 codebase-wide 任務。）</p>
 </blockquote>
-<h3 id="c.-內容摘要與結構分析-8">C. 內容摘要與結構分析</h3>
+<h3 id="c.-內容摘要與結構分析-8" data-letter="C"><span class="h3-label">內容摘要與結構分析</span></h3>
 <p>多數團隊遇到大範圍程式碼任務時，直覺是找一個更強、context window 更長的模型去啃——但這條路本身就走錯方向。單一 agent 面對 codebase-wide 的任務，會同時被三件事夾殺：搜尋成本高到不斷 backtrack、context 被大量不相關資訊污染、以及沒有明確的停止標準。不管換多強的模型，這三個結構性問題都解決不了，只會換一種方式卡住。</p>
 <p>Cognition 的作法反而是先退一步，把 Google 提出的 map-reduce 概念搬進 agentic coding。先讓主 agent 產生 plan，再產出一批 deterministic selector——這些是便宜、可重現的純函式，專門負責把大型 codebase 切成有界（bounded）的候選區域，而不是丟給 agent 自己去摸索邊界在哪裡。切好之後，才平行派出 sub-agent，各自只看被分配到的那塊，context 乾淨，任務範圍也清楚。</p>
 <p>真正有意思的是 reduce 那一步。主 agent 彙整所有 sub-agent 的發現時，不只是去重、排序，還要做跨區域的關聯推理——找出「單獨看是低風險、組合起來卻是 critical exploit」的鏈式漏洞。這種漏洞本來就不是靠任何單一 agent 盯著單一檔案能看出來的，需要有人（或有 agent）站在全局位置，把散落各處的線索接起來。</p>
@@ -1227,12 +1301,12 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li><strong>Context pollution</strong>：把過多不相關資訊塞進 agent 的 context window，稀釋模型對關鍵資訊的注意力。</li>
 <li><strong>Chained vulnerability</strong>：單獨看風險等級低，但串接在一起會形成嚴重漏洞的多個弱點組合。</li>
 </ul>
-<h3 id="d.-議程知識架構圖-8">D. 議程知識架構圖</h3>
+<h3 id="d.-議程知識架構圖-8" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
 <img src="images/edge-ai.png" alt="邊緣裝置地端／雲端動態路由決策流程" />
 <figcaption aria-hidden="true">邊緣裝置地端／雲端動態路由決策流程</figcaption>
 </figure>
-<h3 id="e.-實務應用與案例解析-8">E. 實務應用與案例解析</h3>
+<h3 id="e.-實務應用與案例解析-8" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
 <p><strong>實務案例</strong>：以「codebase 的安全掃描與修復」為主線案例，Devon 對 50 個 GitHub 已知漏洞資料集（跨 Golang、Python、Java 等語言）跑 agentic map-reduce，reduce 階段做三件事：triage（分類）、去重、以及嘗試重現漏洞（含 false positive 排除），最後才提交 PR。</p>
 <p><strong>技術/工具/方法</strong>：Devon（Cognition 的 coding agent 平台）、deterministic selector 函式、平行 sub-agent 派工、reduce 階段的跨發現關聯推理。</p>
 <p><strong>經驗教訓</strong>：</p>
@@ -1240,7 +1314,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li>漏洞掃描工具常見的問題是「一次 release 跑掃描會跑出一大堆待處理 ticket」，若不做重現驗證就直接提交 PR，會製造大量雜訊。</li>
 <li>先重現、再修，才能確保提交的是「有憑有據」的 PR，而不是丟給工程團隊一堆需要人工再篩一次的雜訊。</li>
 </ul>
-<h3 id="f.-深度洞察與反思-8">F. 深度洞察與反思</h3>
+<h3 id="f.-深度洞察與反思-8" data-letter="F"><span class="h3-label">深度洞察與反思</span></h3>
 <p><strong>未來趨勢與跨域連結</strong>：</p>
 <ul>
 <li>講者明確表示這套框架不只限於安全掃描，任何 codebase-wide 任務（死碼清除、跨模組共用邏輯抽取）都可以套用同一個 plan → selector → map → reduce 骨架。</li>
@@ -1251,7 +1325,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li>具體反例或對立觀點：這套方法論本質上假設任務可以被 deterministic selector 切成語意上獨立的 bounded 區域。但高度耦合的 legacy monolith（例如大量共享全域狀態、跨模組隱性依賴的老系統）很難被乾淨地切分，selector 寫得不夠好會直接漏掉關鍵區域而不自知——這與微服務架構強調的「bounded context」設計哲學是同一個假設前提，換句話說，這套方法對「架構本身就已經模組化」的 codebase 效果最好，對尚未模組化的系統反而可能低估風險覆蓋率。</li>
 <li>前提條件與適用邊界：任務必須能拆成語意上獨立的子問題（按 API 邊界、按檔案、按資料流），若任務本質需要全域推理（例如涉及跨模組架構決策的系統性重構），reduce 階段仍會承擔大量推理負擔，方法帶來的成本效益會被稀釋。</li>
 </ul>
-<h3 id="g.-個人啟發與行動方案-8">G. 個人啟發與行動方案</h3>
+<h3 id="g.-個人啟發與行動方案-8" data-letter="G"><span class="h3-label">個人啟發與行動方案</span></h3>
 <p><strong>思維啟發</strong>：</p>
 <ul>
 <li>把「丟一個大任務給 agent」的直覺，換成「先寫 deterministic 的切分邏輯，再讓 agent 做 bounded 的深度工作」，這跟工程管理裡「先拆解任務、再分派」的邏輯相通。</li>
@@ -1266,21 +1340,21 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <hr />
 <p><a id="pr-bottleneck"></a></p>
 <h2 id="fixing-the-pr-bottleneck解決-pr-瓶頸">Fixing the PR Bottleneck｜解決 PR 瓶頸</h2>
-<h3 id="a.-基本資訊-9">A. 基本資訊</h3>
+<h3 id="a.-基本資訊-9" data-letter="A"><span class="h3-label">基本資訊</span></h3>
 <ul>
 <li>講者：Matt Pocock（Matt Pocock Ltd，前 Vercel，TypeScript 領域知名開發者，AI Hero skills 作者）</li>
 <li>時間與地點：Day2（9/24）16:30–17:00，Main Stage</li>
 <li>關鍵字：software factory、automated review、coding standards、deep module、retro skill</li>
-<li>品質等級：🟢 高密度</li>
+<li>品質等級：<span class="grade grade-green">🟢 高密度</span></li>
 </ul>
 <p><strong>講者背景</strong>：Matt Pocock 出身並非傳統工程路線，早年是聲樂教練，後來才轉入軟體開發。他先在開源專案 XState 貢獻 TypeScript 型別推論工具並加入 Stately 核心團隊，之後以三天一週、三個月合約的形式加入 Vercel 擔任 developer advocate。他創立的線上課程 Total TypeScript 累積超過 250 萬美元銷售額，是 TypeScript 教學領域的知名人物；目前主理新課程 AI Hero，專注教開發者用 TypeScript 與 AI coding agent 打造可靠軟體。</p>
-<h3 id="b.-核心思想煉金-9">B. 核心思想煉金</h3>
+<h3 id="b.-核心思想煉金-9" data-letter="B"><span class="h3-label">核心思想煉金</span></h3>
 <p><strong>思想寶石</strong>：AI 讓「軟體工廠」自動觸發愈來愈多工作流，若只加速不設煞車就會變成 slop cannon（大量低品質 PR 堆積無人能審），因此需要三層品質閘門——便宜但會說謊的 automated checks、專門抓 checks 謊言的 automated review、以及最後才輪到的 human review；而讓 automated review 真正有效的關鍵，是不要把 coding standards 塞進本來就已經被探索、修改、除錯三件事塞滿的 implement agent，而是切給一個工作單一、context 空間充裕的獨立 review sub-agent 去做。（🔑 反直覺：加速的前提反而是要先設計好減速機制，就像車子要能開快，前提是有煞車；🔄 可遷移性：任何多工超載的 agent，把品質約束抽到專屬的單一職責 agent，這個架構原則不限於 code review）</p>
 <p><strong>關鍵引言</strong>：</p>
 <blockquote>
 <p>“Implementation is overloaded… review is actually underloaded.” （實作這個 agent 角色任務過載，而審查這個角色其實工作量不足。）</p>
 </blockquote>
-<h3 id="c.-內容摘要與結構分析-9">C. 內容摘要與結構分析</h3>
+<h3 id="c.-內容摘要與結構分析-9" data-letter="C"><span class="h3-label">內容摘要與結構分析</span></h3>
 <p>AI 寫程式碼的速度，已經不是問題了——問題是審查跟不上。過去「一個 PR 對應一次人工 review」這個共識，建立在人類寫程式碼的速度上；現在 AI agent 能被自動觸發去做錯誤分類、修復，不斷產出 PR，審查能力卻沒有同步加速。這個舊平衡正在崩解，講者稱之為 software factory 變成 slop cannon 的風險——不設煞車的加速，最後噴出的是大量沒人審得完的低品質 PR。</p>
 <p>想讓車開快，前提是先有煞車。三層品質閘門因此被設計出來：automated checks（linting、測試、型別檢查）先擋第一輪，但這層便宜，卻也會說謊——綠色的 CI 不代表 code 真的能上線。同義反覆的測試就是一個典型例子：把某個硬編的字元上限拿來斷言同一個數字，測試看似通過，實際上只是把實作邏輯複述一遍，常數一改就跟著壞；過度依賴 mock 的測試也一樣，把整個 audioContext 直接 stub 掉，真實的錯誤模式在測試裡永遠不會出現，直到 production 才爆炸。</p>
 <p>真正讓 automated review 有效的關鍵，不是找一個更聰明的模型去審查，而是把 coding standards 從 implement agent 身上拿走。implement agent 本來就要同時負責探索、修改、除錯，是最過載的角色；review agent 反而是任務單一、context 空間充裕的角色，理應被交付更多責任——不只是留言，而是直接 commit 修正，否則等於把工作丟回人類手上，什麼都沒省到。</p>
@@ -1348,12 +1422,12 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li><strong>Deep module</strong>：Ousterhout《A Philosophy of Software Design》提出的概念，介面簡單但內部實作複雜的模組設計。</li>
 <li><strong>One-way door / two-way door</strong>：AWS 決策框架，區分不可逆（一旦做了難以回頭）與可逆（可以簡單復原）的決策。</li>
 </ul>
-<h3 id="d.-議程知識架構圖-9">D. 議程知識架構圖</h3>
+<h3 id="d.-議程知識架構圖-9" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
 <img src="images/agentic-map-reduce.png" alt="Agentic Map-Reduce 處理 Codebase-wide 任務流程" />
 <figcaption aria-hidden="true">Agentic Map-Reduce 處理 Codebase-wide 任務流程</figcaption>
 </figure>
-<h3 id="e.-實務應用與案例解析-9">E. 實務應用與案例解析</h3>
+<h3 id="e.-實務應用與案例解析-9" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
 <p><strong>實務案例</strong>：講者自己開發的一系列 Claude Code skills：</p>
 <ul>
 <li>code review skill（讀取 coding-standards.md，在獨立 sub-agent context 中檢查 diff）</li>
@@ -1366,14 +1440,14 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li>試圖打造一套「通用」的自動 code review skill 會兩頭落空——太通用會產生大量與情境無關的 false positive，太針對特定語言（如只抓 TypeScript）又會讓其他語言團隊無法用。</li>
 <li>因此不建議外包給第三方通用審查服務，而是團隊自己養一份會隨時間累積的 coding standards。</li>
 </ul>
-<h3 id="f.-深度洞察與反思-9">F. 深度洞察與反思</h3>
+<h3 id="f.-深度洞察與反思-9" data-letter="F"><span class="h3-label">深度洞察與反思</span></h3>
 <p><strong>未來趨勢與跨域連結</strong>：正在開發的 PR skill 顯示「process 本身即產品」的思維會愈來愈重要——human review 不再只是單次把關動作，而是被視為訓練下一輪 agent 表現的資料來源（retro skill 的核心邏輯）。</p>
 <p><strong>批判性思考</strong>：</p>
 <ul>
 <li>具體反例或對立觀點：講者明確點名反對「outsource automated review」，例如直接使用 Cursor Bugbot、CodeRabbit 這類第三方通用 code review 服務——但這正是目前市場上許多團隊採用的主流做法，兩條路線互相對立：第三方服務省去團隊自建與長期維護 coding standards 的成本，但無法真正貼合單一團隊的特定規範；講者主張的自建路線精準度更高，但需要團隊持續投入維運。這是一個真實存在的取捨，而非單純對錯。</li>
 <li>前提條件與適用邊界：這套三層防護框架假設團隊有能力持續維護 coding-standards.md 並定期跑 retro，對人力有限、沒有專職維運 agent workflow 的中小型團隊，額外的維護成本可能抵銷掉 human review 省下的時間，此時直接用第三方通用審查服務反而更務實。</li>
 </ul>
-<h3 id="g.-個人啟發與行動方案-9">G. 個人啟發與行動方案</h3>
+<h3 id="g.-個人啟發與行動方案-9" data-letter="G"><span class="h3-label">個人啟發與行動方案</span></h3>
 <p><strong>思維啟發</strong>：把「code review」從一次性動作重新定義成「持續訓練下一輪 agent 的回饋迴圈」，對台灣多數 IT 團隊而言是相對陌生的思維——review 的產出不只是「這個 PR 過不過」，還包括「這次抓到的問題能不能變成下次自動擋掉的規則」。</p>
 <p><strong>角色化行動建議</strong>：</p>
 <ol type="1">
@@ -1384,21 +1458,21 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <hr />
 <p><a id="gemma4"></a></p>
 <h2 id="the-efficiency-of-gemma-4gemma-4-的效率設計">The Efficiency of Gemma 4｜Gemma 4 的效率設計</h2>
-<h3 id="a.-基本資訊-10">A. 基本資訊</h3>
+<h3 id="a.-基本資訊-10" data-letter="A"><span class="h3-label">基本資訊</span></h3>
 <ul>
 <li>講者：Maarten Grootendorst（Google DeepMind）</li>
 <li>時間與地點：Day2（9/24）17:00–17:30，Main Stage</li>
 <li>關鍵字：per-layer embedding、mobile quant、speculative decoding、encoder-free model、diffusion LLM</li>
-<li>品質等級：🟢 高密度</li>
+<li>品質等級：<span class="grade grade-green">🟢 高密度</span></li>
 </ul>
 <p><strong>講者背景</strong>：Maarten Grootendorst 現任 Google DeepMind 的 Developer Relations Engineer（2025 年初上任）。他的職涯路徑並非傳統資工出身，而是先取得臨床心理學與組織心理學碩士，之後才轉職進入資料科學與機器學習領域。他是開源工具 BERTopic、KeyBERT、PolyFuzz 的作者，並與人合著《Hands-On Large Language Models》一書。</p>
-<h3 id="b.-核心思想煉金-10">B. 核心思想煉金</h3>
+<h3 id="b.-核心思想煉金-10" data-letter="B"><span class="h3-label">核心思想煉金</span></h3>
 <p><strong>思想寶石</strong>：Gemma 4 的 E2B／E4B 之所以能做到端側部署，關鍵在於 per-layer embedding 把大量知識參數變成一張查表用的 lookup table，推論時只讀取當下用得到的 token，等於把「參數量」與「推論所需的即時記憶體」解耦——這個思路後來意外延伸出一個原本沒被設計的用途：把 Diffusion Gemma 的去噪架構直接拿來做決策分類器（Jeff），不需要重新微調，純粹是把推論本身的特性開放給社群後才被發現出來的能力。（🔑 反直覺：一般直覺是參數量愈大愈吃記憶體，但 per-layer embedding 證明有些參數可以幾乎不佔用執行期資源；🔄 可遷移性：「知識儲存」與「即時運算」拆開設計的思路，能套用到任何資源受限的部署場景）</p>
 <p><strong>關鍵引言</strong>：</p>
 <blockquote>
 <p>“It doesn’t matter how good a model is if you can’t run it, it’s meaningless.” （模型再好，如果跑不起來，就毫無意義。）</p>
 </blockquote>
-<h3 id="c.-內容摘要與結構分析-10">C. 內容摘要與結構分析</h3>
+<h3 id="c.-內容摘要與結構分析-10" data-letter="C"><span class="h3-label">內容摘要與結構分析</span></h3>
 <p>一個模型可以「知道」很多事，但推論當下真正需要讀取的記憶體，可能只是其中極小一部分——這正是 Gemma 4 能做到端側部署的關鍵落差。E2B、E4B 裡的 E 代表 effective，意思是模型看起來的參數量，跟它實際占用的即時運算資源，根本是兩回事。靠的是 per-layer embedding：把大量知識參數變成一張逐 token、逐層的查表用 lookup table，推論時只讀取當下用得到的那一小撮，等於把「參數量」與「推論所需的即時記憶體」硬生生拆開。</p>
 <p>這個思路延伸到整套效率設計。Size 這個維度上，mobile quant 用混合精度量化——token embedding 能壓到 2bit，global attention 跟 FFN 用 4bit，local attention 因為對 KV cache 敏感需要較高精度，per-layer embedding 也壓到 2bit 來彌補 token embedding 的精度損失，每個元件分配到的 bit 數都不一樣，不是無腦統一壓縮。Speed 這端則靠 speculative decoding 搭配 multi-token prediction，小的 draft model 先猜多個 token，大的 target model 一次驗證，KV cache sharing 負責降低 draft model 的負擔——但講者自己也承認，這招在結構化任務（像程式碼）上效果很好，創意任務上小模型很難猜對接下來該吐出什麼 token，加速比會明顯打折。</p>
 <p>Complexity 和 architecture 兩層走的是更激進的路線。Encoder-free 直接拿掉獨立的 audio、image encoder，改用 linear projection 把原始輸入投影進模型維度，image 另外加 positional embedding 處理空間資訊——目的很直接，降低 time-to-first-token，在 2B 到 12B 這種小尺寸模型上省下可觀的參數量。Diffusion Gemma 更進一步，把 decoder fine-tune 成雙向 attention 的 denoiser，從一塊 256-token 的帶噪 canvas 開始，大約 8 步迭代去噪就能收斂。</p>
@@ -1453,12 +1527,12 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li><strong>Encoder-free model</strong>：不使用獨立 encoder 處理多模態輸入，直接把原始輸入投影進 LLM 的架構。</li>
 <li><strong>Diffusion LLM</strong>：以迭代去噪取代自迴歸逐 token 生成的語言模型架構。</li>
 </ul>
-<h3 id="d.-議程知識架構圖-10">D. 議程知識架構圖</h3>
+<h3 id="d.-議程知識架構圖-10" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
 <img src="images/pr-bottleneck.png" alt="PR 三層品質閘門循環" />
 <figcaption aria-hidden="true">PR 三層品質閘門循環</figcaption>
 </figure>
-<h3 id="e.-實務應用與案例解析-10">E. 實務應用與案例解析</h3>
+<h3 id="e.-實務應用與案例解析-10" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
 <p><strong>實務案例</strong>：</p>
 <ul>
 <li>Gemma 4 E2B／E4B 系列的端側部署設計。</li>
@@ -1470,7 +1544,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li>效率設計不是套用單一招數，而是要針對模型尺寸客製化整套方案——小模型（2B／4B）的量化精度分配策略，跟大模型完全不同。</li>
 <li>開放模型釋出後被社群發現的新用途（如 Jeff），往往不是原廠規劃出來的功能。</li>
 </ul>
-<h3 id="f.-深度洞察與反思-10">F. 深度洞察與反思</h3>
+<h3 id="f.-深度洞察與反思-10" data-letter="F"><span class="h3-label">深度洞察與反思</span></h3>
 <p><strong>未來趨勢與跨域連結</strong>：</p>
 <ul>
 <li>把「參數量」與「推論成本」解耦的思路（per-layer embedding）可能持續擴散到更多端側模型設計。</li>
@@ -1481,7 +1555,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li>具體反例或對立觀點：講者自己承認 speculative decoding 在創意生成任務上效果明顯打折——“in creative tasks it’s very hard for the smaller model to really figure out what kind of tokens am I going to suggest”，代表這套加速手段不是普遍適用，對話式創意寫作場景不該預期同等的加速比。此外，encoder-free 設計把原本由 encoder 承擔的多模態處理負擔轉嫁給主模型，對本來參數量就吃緊的 2B 級小模型，是否會壓縮到其他任務能力，講者只用「有 pros and cons」帶過，並未提供長期 trade-off 的實測資料。</li>
 <li>前提條件與適用邊界：這些效率技巧主要針對「開放權重、需要在端側／裝置上執行」的場景設計；如果是內部託管、不受端側硬體資源限制的私有模型，per-layer embedding、mobile quant 帶來的效益會小很多，甚至不值得投入額外的架構複雜度。</li>
 </ul>
-<h3 id="g.-個人啟發與行動方案-10">G. 個人啟發與行動方案</h3>
+<h3 id="g.-個人啟發與行動方案-10" data-letter="G"><span class="h3-label">個人啟發與行動方案</span></h3>
 <p><strong>思維啟發</strong>：</p>
 <ul>
 <li>把「選擇開放權重模型」從單純的授權成本考量，重新框成「留給團隊或社群發現新用途的彈性」——Diffusion Gemma 被改造成決策分類器就是一個實例。</li>
@@ -1496,21 +1570,21 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <hr />
 <p><a id="conversational-ai"></a></p>
 <h2 id="the-missing-layers-of-conversational-ai對話式-ai-少了哪幾層">The Missing Layers of Conversational AI｜對話式 AI 少了哪幾層</h2>
-<h3 id="a.-基本資訊-11">A. 基本資訊</h3>
+<h3 id="a.-基本資訊-11" data-letter="A"><span class="h3-label">基本資訊</span></h3>
 <ul>
 <li>講者：Olivier Teboul（Gradium，CTO 與共同創辦人）</li>
 <li>時間與地點：Day2（9/24）17:30–18:00，Main Stage</li>
 <li>關鍵字：cascaded model、speech-to-speech、neural codec、multistream hierarchical transformer、延遲預算</li>
-<li>品質等級：🟢 高密度</li>
+<li>品質等級：<span class="grade grade-green">🟢 高密度</span></li>
 </ul>
 <p><strong>講者背景</strong>：Olivier Teboul 是巴黎新創 Gradium 的共同創辦人暨 CTO，加入前曾任職於 Google Brain。Gradium 於 2025 年 9 月由他與法國非營利 AI 研究實驗室 Kyutai 的多位研究者共同創立，創辦團隊共同打造了 EnCodec、SoundStream、Moshi 等語音 AI 基礎研究成果，這些論文是目前多數現代語音 AI 系統（包括 OpenAI 的產品）的技術基礎。</p>
-<h3 id="b.-核心思想煉金-11">B. 核心思想煉金</h3>
+<h3 id="b.-核心思想煉金-11" data-letter="B"><span class="h3-label">核心思想煉金</span></h3>
 <p><strong>思想寶石</strong>：語音模型不能直接套用 LLM 的自迴歸架構，因為同一句話的音訊序列長度是文字的萬倍量級（9 個字約 3 秒語音，在 24kHz 取樣下等於 72,000 個樣本值），用 neural codec 把音訊壓成 12.5Hz 的離散 token 之後，自迴歸生成才變得可行；而真實對話從來不是「輪流講話」的 walkie-talkie 模式，會同時說話、打斷、重疊，因此語音模型需要 multistream hierarchical transformer 讓「我在說」與「你在說」兩條時間軸同時互相 attend，架構本身要內建「同時性」，而不是靠事後拼接的 turn-taking 邏輯去補。（🔑 反直覺：一個看似同構的問題——文字序列預測 vs 音訊序列預測——直接套用既有架構前，必須先檢查維度與計算複雜度是否真的可轉移，quadratic self-attention 在音訊這種長序列上會直接爆掉；🔄 可遷移性：評估任何語音對話方案時，可以用「是否原生支援重疊與打斷」作為技術選型的判準）</p>
 <p><strong>關鍵引言</strong>：</p>
 <blockquote>
 <p>“If it doesn’t talk to the world… it’s just a gadget.” （如果模型不能跟外部世界互動，它就只是個玩具。）</p>
 </blockquote>
-<h3 id="c.-內容摘要與結構分析-11">C. 內容摘要與結構分析</h3>
+<h3 id="c.-內容摘要與結構分析-11" data-letter="C"><span class="h3-label">內容摘要與結構分析</span></h3>
 <p>一句九個字的話，講出來大約三秒，在 24kHz 取樣下就是七萬兩千個樣本值——同一句話，文字序列長度和語音序列長度，中間隔著一萬倍以上的量級差距。這就是為什麼語音模型不能直接把 LLM 的自迴歸架構原封不動搬過來用：quadratic self-attention 碰上這種長度的序列，直接就爆掉。必須先用 neural codec 把音訊壓成 12.5Hz 的離散 token，自迴歸生成才變得可行——兩個看起來同構的問題，文字序列預測跟音訊序列預測，直接套用同一套架構前，得先檢查維度跟計算複雜度是不是真的能轉移。</p>
 <p>但序列長度只是第一層問題。真實對話從來不是輪流講話的 walkie-talkie 模式——會同時開口、會打斷、會重疊。如果模型架構本身只有一條時間軸，就只能靠事後拼接的 turn-taking 邏輯去補這個缺口，補得再細膩，也是後天加上去的。Multistream hierarchical transformer 的作法是讓「我在說」跟「你在說」變成兩條並行的時間軸，同時互相 attend——同時性是內建在架構裡的，不是靠邏輯判斷誰該讓誰。</p>
 <p>從 Siri 時代六層 pipeline（語音辨識、意圖分類、對話管理、API 呼叫、文字生成、TTS），到 LLM 把意圖分類跟文字生成整併進去的 cascaded model（ASR、LLM、TTS 三個模組拼接），再到 speech-to-speech 的一體模型——這條演進路線看起來愈來愈完整，但目前約 99% 的語音 agent，走的還是 cascaded 這條路。原因不是 speech-to-speech 技術不夠好，而是它目前是 airgapped 的：不連接外部世界、沒有 tool calling 整合，就只是一個玩具。這是這條路線最大也最現實的坎。</p>
@@ -1574,12 +1648,12 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li><strong>Multistream hierarchical transformer</strong>：具備多條並行時間軸、能同時處理多方語音串流的 transformer 架構。</li>
 <li><strong>Turn-taking</strong>：對話中判斷輪到誰說話的機制。</li>
 </ul>
-<h3 id="d.-議程知識架構圖-11">D. 議程知識架構圖</h3>
+<h3 id="d.-議程知識架構圖-11" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
 <img src="images/gemma4.png" alt="Gemma 4 效率設計" />
 <figcaption aria-hidden="true">Gemma 4 效率設計</figcaption>
 </figure>
-<h3 id="e.-實務應用與案例解析-11">E. 實務應用與案例解析</h3>
+<h3 id="e.-實務應用與案例解析-11" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
 <p><strong>實務案例</strong>：</p>
 <ul>
 <li>Gradium 的 STT／TTS／S2S 產品線、端側 TTS、語音設計（口音、音高客製化），以及即將推出的 speech-to-speech。</li>
@@ -1591,7 +1665,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li>Kyutai（前身 CQAI）早在 2024 年就已有 Moshi 這類 speech-to-speech 技術，但沒有商品化；Gradium 成立正是為了把研究成果變成產品。</li>
 <li>技術領先不等於產品化，中間隔著一年以上的落差，這段落差本身就是值得留意的教訓。</li>
 </ul>
-<h3 id="f.-深度洞察與反思-11">F. 深度洞察與反思</h3>
+<h3 id="f.-深度洞察與反思-11" data-letter="F"><span class="h3-label">深度洞察與反思</span></h3>
 <p><strong>未來趨勢與跨域連結</strong>：</p>
 <ul>
 <li>若 speech-to-speech 能解決 tool calling 整合問題，有可能取代 cascaded model 成為主流。</li>
@@ -1602,7 +1676,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li>具體反例或對立觀點：講者自己承認 speech-to-speech 模型目前是 “airgapped”、若不能整合外部工具就 “just a gadget”，這代表現階段約 99% 的語音 agent 仍選擇用 cascaded model（ASR-LLM-TTS 拼接）而非 all-in-one 架構——並非因為 speech-to-speech 技術本身不夠好，而是 tool calling 整合這個工程問題還沒解決。這與業界常見的「end-to-end 模型終將取代 pipeline 模型」敘事形成對照：至少在需要外部工具串接的場景，拼接式架構目前仍有其生存空間。</li>
 <li>前提條件與適用邊界：multistream hierarchical transformer 與 speech-to-speech 的效益，建立在「即時、自然、多方對話」這個特定情境上；若應用場景是單向播報或固定腳本式 IVR，cascaded model 的成熟度與除錯便利性可能仍是更務實的選擇，不必為了追求技術先進性而貿然換架構。</li>
 </ul>
-<h3 id="g.-個人啟發與行動方案-11">G. 個人啟發與行動方案</h3>
+<h3 id="g.-個人啟發與行動方案-11" data-letter="G"><span class="h3-label">個人啟發與行動方案</span></h3>
 <p><strong>思維啟發</strong>：把「語音 AI 要多好」的問題，轉換成「語音 AI 能不能在 300 毫秒內跑起來、又能接得上外部系統」——這提醒讀者角色在評估語音客服或助理方案時，不能只看 demo 中的語音自然度，要追問架構是 cascaded 還是 speech-to-speech、能不能做 tool calling、延遲 SLA 是多少。</p>
 <p><strong>角色化行動建議</strong>：</p>
 <ol type="1">
@@ -1644,8 +1718,6 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose"
     clone.removeAttribute("style");
     var vb = svg.viewBox && svg.viewBox.baseVal;
     var nativeWidth = vb ? vb.width : svg.getBoundingClientRect().width;
-    // 不要用 90vw 夾住寬度——太寬的圖（例如 timeline）夾住後反而比原生尺寸還小、等於沒放大。
-    // 一律放大到至少原生寬度的 1.3 倍、最低 900px，超出視窗的部分交給 .lightbox-inner 的 overflow:auto 用捲動處理。
     var targetWidth = Math.max(nativeWidth * 1.3, 900);
     clone.style.width = targetWidth + "px";
     clone.style.height = "auto";
@@ -1657,8 +1729,6 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose"
     inner.innerHTML = "";
     var clone = img.cloneNode(true);
     clone.removeAttribute("style");
-    // 點陣圖不用放大公式——img 沒有指定 width 時瀏覽器會用原生解析度顯示，
-    // 再靠 .lightbox-inner img 的 max-width/max-height 自然限制在視窗內，不會被拉伸模糊。
     inner.appendChild(clone);
     lightbox.classList.add("is-open");
   }

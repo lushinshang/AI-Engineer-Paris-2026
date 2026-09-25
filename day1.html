@@ -6,43 +6,58 @@
 <title>AI Engineer Paris 2026 Day1｜開幕場演講心得報告</title>
 <meta name="description" content="經濟史視角下的 AI 生產力弔詭、AI 工程治理、動態權限與主權四維度——三場開幕演講的思想煉金報告">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@500;700;900&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
 <style>
 :root {
-  --bg: #f9f7f4;
-  --fg: #1a1a1a;
-  --muted: #6b6459;
-  --card-bg: #ffffff;
-  --border: #e6e1d8;
-  --accent: #b5502f;
-  --accent-soft: #f1e3da;
-  --link: #a0451f;
-  --code-bg: #f1efe9;
+  --bg: #f2f0e9;
+  --fg: #1c1d1b;
+  --muted: #6b6a5e;
+  --card-bg: #faf9f5;
+  --border: #d8d4c8;
+  --accent: #3f6355;
+  --accent-soft: #e3e9e1;
+  --brass: #a9762e;
+  --brass-soft: #f1e6d2;
+  --rust: #a2492f;
+  --rust-soft: #f3e2db;
+  --link: #3f6355;
+  --code-bg: #ece9df;
+  --serif: "Noto Serif TC", "Source Serif 4", "Times New Roman", serif;
+  --sans: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --mono: "IBM Plex Mono", "Noto Sans TC", monospace;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #1b1a17;
-    --fg: #eae6dd;
-    --muted: #a89f8f;
-    --card-bg: #242220;
-    --border: #3a362f;
-    --accent: #e8935f;
-    --accent-soft: #3a2c22;
-    --link: #f0a878;
-    --code-bg: #2a2723;
+    --bg: #17181a;
+    --fg: #e8e6de;
+    --muted: #9c9a8c;
+    --card-bg: #1f2022;
+    --border: #34362f;
+    --accent: #6b9c89;
+    --accent-soft: #24312b;
+    --brass: #d4a855;
+    --brass-soft: #332a17;
+    --rust: #d0836a;
+    --rust-soft: #32211c;
+    --link: #6b9c89;
+    --code-bg: #202220;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #1b1a17;
-  --fg: #eae6dd;
-  --muted: #a89f8f;
-  --card-bg: #242220;
-  --border: #3a362f;
-  --accent: #e8935f;
-  --accent-soft: #3a2c22;
-  --link: #f0a878;
-  --code-bg: #2a2723;
+  --bg: #17181a;
+  --fg: #e8e6de;
+  --muted: #9c9a8c;
+  --card-bg: #1f2022;
+  --border: #34362f;
+  --accent: #6b9c89;
+  --accent-soft: #24312b;
+  --brass: #d4a855;
+  --brass-soft: #332a17;
+  --rust: #d0836a;
+  --rust-soft: #32211c;
+  --link: #6b9c89;
+  --code-bg: #202220;
 }
 
 * { box-sizing: border-box; }
@@ -51,9 +66,9 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--fg);
-  font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  font-family: var(--sans);
   font-size: 16px;
-  line-height: 1.68;
+  line-height: 1.7;
   letter-spacing: 0;
 }
 
@@ -61,134 +76,193 @@ body {
   position: sticky; top: 0; z-index: 50;
   background: var(--bg);
   border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(6px);
 }
 .topbar-inner {
   max-width: 720px; margin: 0 auto;
-  display: flex; align-items: center; gap: 14px;
-  padding: 0 16px; height: 58px;
+  display: flex; align-items: center; gap: 18px;
+  padding: 0 16px; height: 52px;
   overflow-x: auto; white-space: nowrap;
 }
 .topbar a {
-  color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500;
-  padding: 6px 10px; border-radius: 8px; flex: 0 0 auto;
+  color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500;
+  font-family: var(--mono);
+  padding: 4px 2px; flex: 0 0 auto;
+  border-bottom: 2px solid transparent;
 }
-.topbar a:hover { color: var(--fg); background: var(--accent-soft); }
-.topbar a.brand { color: var(--accent); font-weight: 700; }
+.topbar a:hover { color: var(--fg); }
+.topbar a.brand {
+  color: var(--fg); font-weight: 600; font-family: var(--mono); font-size: 12.5px;
+  letter-spacing: 0.04em;
+}
 .theme-toggle {
-  margin-left: auto; border: 1px solid var(--border); background: var(--card-bg);
-  color: var(--fg); border-radius: 8px; padding: 6px 10px; font-size: 13px; cursor: pointer;
-  flex: 0 0 auto;
+  margin-left: auto; border: 1px solid var(--border); background: transparent;
+  color: var(--muted); padding: 4px 10px; font-size: 12px; cursor: pointer;
+  flex: 0 0 auto; font-family: var(--mono);
 }
+.theme-toggle:hover { color: var(--fg); border-color: var(--fg); }
 
 main.wrap {
   max-width: 1120px; margin: 0 auto; padding: 0 16px;
 }
 article {
-  max-width: 720px; margin: 0 auto; padding: 36px 0 80px;
+  max-width: 720px; margin: 0 auto; padding: 0 0 90px;
 }
 
-h1, h2, h3 { text-wrap: balance; line-height: 1.35; }
-h1 { font-size: clamp(1.7rem, 4vw, 2.5rem); margin: 4px 0 28px; font-weight: 900; }
-h2 {
-  font-size: clamp(1.25rem, 3vw, 1.55rem); margin: 48px 0 16px; font-weight: 700;
-  border-left: 5px solid var(--accent); padding-left: 14px; margin-left: -19px;
+/* 封面區：報告標頭 */
+.cover {
+  padding: 44px 0 28px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 36px;
 }
-h3 { font-size: 1.12rem; margin: 30px 0 12px; font-weight: 700; color: var(--accent); }
-p { margin: 0 0 16px; }
-strong { color: var(--fg); }
+.cover .kicker {
+  font-family: var(--mono); font-size: 12.5px; color: var(--accent);
+  margin: 0 0 14px;
+}
+.cover h1 {
+  font-family: var(--serif); font-weight: 700;
+  font-size: clamp(1.8rem, 5vw, 2.7rem); line-height: 1.28;
+  margin: 0 0 18px; text-wrap: balance;
+}
+.cover .meta {
+  font-family: var(--mono); font-size: 12.5px; color: var(--muted);
+  display: flex; flex-wrap: wrap; gap: 6px 16px;
+}
+.cover .meta span { white-space: nowrap; }
+
+h1, h2, h3 { text-wrap: balance; line-height: 1.35; }
+h2 {
+  font-family: var(--serif); font-weight: 700;
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
+  margin: 52px 0 18px; padding-top: 22px;
+  border-top: 1px solid var(--border);
+}
+article > h2:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+
+/* A-G 段落：空心大寫字母 + 標籤，做成規格表分隔線 */
+h3 {
+  font-size: 0; margin: 34px 0 14px; line-height: 1;
+  display: flex; align-items: baseline; gap: 12px;
+}
+h3::before {
+  content: attr(data-letter);
+  font-family: var(--serif); font-size: 2.1rem; font-weight: 700;
+  color: transparent; -webkit-text-stroke: 1.3px var(--accent);
+  line-height: 1;
+}
+h3 .h3-label {
+  font-size: 0.95rem; font-weight: 700; color: var(--fg); font-family: var(--sans);
+}
+/* 沒有對應到 A-G 字母的 h3（罕見）退回一般樣式 */
+h3:not([data-letter]) { font-size: 1.05rem; font-weight: 700; color: var(--accent); font-family: var(--sans); }
+
+p { margin: 0 0 17px; max-width: 68ch; }
+strong { color: var(--fg); font-weight: 700; }
 a { color: var(--link); }
 
 blockquote {
-  margin: 16px 0; padding: 10px 18px; border-left: 3px solid var(--accent);
-  background: var(--accent-soft); border-radius: 0 8px 8px 0; color: var(--fg);
+  margin: 20px 0; padding: 4px 0 4px 20px; border-left: 2px solid var(--brass);
+  color: var(--fg); font-family: var(--serif); font-size: 1.02rem; font-style: italic;
 }
-blockquote p { margin: 4px 0; }
+blockquote p { margin: 6px 0; }
 
 table {
-  width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14.5px;
+  width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 14px;
   display: block; overflow-x: auto; white-space: normal;
 }
-th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
-th { background: var(--card-bg); font-weight: 700; }
+th, td { border: 1px solid var(--border); padding: 9px 11px; text-align: left; vertical-align: top; }
+th { background: var(--code-bg); font-weight: 700; font-family: var(--mono); font-size: 12.5px; }
 tr:nth-child(even) td { background: var(--card-bg); }
 
-ul, ol { padding-left: 1.4em; margin: 0 0 16px; }
-li { margin: 4px 0; }
+ul, ol { padding-left: 1.3em; margin: 0 0 17px; max-width: 68ch; }
+li { margin: 5px 0; }
 
-code { background: var(--code-bg); border-radius: 4px; padding: 1px 5px; font-size: 0.92em; }
-pre { background: var(--code-bg); border-radius: 10px; padding: 14px 16px; overflow-x: auto; }
+code { background: var(--code-bg); font-family: var(--mono); border-radius: 3px; padding: 1px 5px; font-size: 0.88em; }
+pre { background: var(--code-bg); padding: 14px 16px; overflow-x: auto; }
 pre code { background: none; padding: 0; }
 
+/* 品質等級／議程小標籤：分級印章感 */
+.grade {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--mono); font-size: 12px; font-weight: 600;
+  padding: 1px 8px; border: 1px solid currentColor; white-space: nowrap;
+}
+.grade-green { color: var(--accent); background: var(--accent-soft); }
+.grade-yellow { color: var(--brass); background: var(--brass-soft); }
+.grade-red { color: var(--rust); background: var(--rust-soft); }
+
 pre.mermaid {
-  background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
-  padding: 18px; overflow-x: auto; text-align: center;
+  background: var(--card-bg); border: 1px solid var(--border);
+  padding: 20px; overflow-x: auto; text-align: center;
   position: relative; cursor: zoom-in;
 }
 pre.mermaid::after {
-  content: "🔍 點圖放大";
-  position: absolute; top: 8px; right: 12px;
-  font-size: 12px; color: var(--muted); opacity: 0.75;
+  content: "點圖放大";
+  position: absolute; top: 10px; right: 14px;
+  font-family: var(--mono); font-size: 11px; color: var(--muted); opacity: 0.7;
   pointer-events: none;
 }
 pre.mermaid svg { max-width: 100%; height: auto; }
 
-figure { margin: 20px 0; }
+figure { margin: 22px 0; }
 figure img {
-  display: block; width: 100%; height: auto; border-radius: 12px;
+  display: block; width: 100%; height: auto;
   border: 1px solid var(--border); cursor: zoom-in;
 }
 figure figcaption {
-  text-align: center; font-size: 13px; color: var(--muted); margin-top: 8px;
+  font-family: var(--mono); text-align: left; font-size: 11.5px; color: var(--muted); margin-top: 8px;
 }
 
 .lightbox {
   display: none; position: fixed; inset: 0; z-index: 200;
-  background: rgba(20,18,15,0.9);
+  background: rgba(15,16,14,0.92);
   align-items: center; justify-content: center; padding: 28px;
   cursor: zoom-out;
 }
 .lightbox.is-open { display: flex; }
 .lightbox-inner {
-  background: var(--card-bg); border-radius: 14px; padding: 24px;
+  background: var(--card-bg); padding: 24px;
   max-width: 96vw; max-height: 92vh; overflow: auto; cursor: default;
+  border: 1px solid var(--border);
 }
 .lightbox-inner svg { max-width: none; width: auto; height: auto; }
-.lightbox-inner img { max-width: 92vw; max-height: 86vh; width: auto; height: auto; border-radius: 8px; display: block; }
+.lightbox-inner img { max-width: 92vw; max-height: 86vh; width: auto; height: auto; display: block; }
 .lightbox-hint {
-  position: absolute; top: 18px; right: 22px; color: rgba(255,255,255,0.75); font-size: 13px;
+  position: absolute; top: 18px; right: 22px; color: rgba(255,255,255,0.7);
+  font-family: var(--mono); font-size: 12px;
 }
 
-hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
+hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
 
 .day-nav {
-  display: flex; gap: 10px; margin: 18px 0 8px;
+  display: flex; gap: 0; margin: 0 0 8px;
 }
 .day-nav a {
-  border: 1px solid var(--border); border-radius: 999px; padding: 6px 16px;
-  font-size: 13.5px; color: var(--muted); text-decoration: none;
+  font-family: var(--mono); font-size: 12.5px; color: var(--muted); text-decoration: none;
+  padding: 6px 14px; border: 1px solid var(--border); border-right: none;
 }
-.day-nav a.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+.day-nav a:last-child { border-right: 1px solid var(--border); }
+.day-nav a.active { background: var(--fg); color: var(--bg); border-color: var(--fg); }
 
 @media (max-width: 640px) {
-  article { padding: 24px 0 60px; }
-  h2 { margin-left: 0; border-left: none; padding-left: 0; border-top: 3px solid var(--accent); padding-top: 10px; }
+  article { padding: 0 0 60px; }
+  .cover { padding: 32px 0 22px; }
+  h2 { margin: 40px 0 14px; }
 }
 </style>
 </head>
 <body>
 <div class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="#top">AI Engineer Paris 2026</a>
+    <a class="brand" href="#top">AI·ENGINEER·PARIS·2026</a>
     <a href="day1.html">Day 1</a>
     <a href="day2.html">Day 2</a>
-    <button class="theme-toggle" id="themeToggle" type="button">🌓 深色模式</button>
+    <button class="theme-toggle" id="themeToggle" type="button">深色模式</button>
   </div>
 </div>
 <main class="wrap">
 <article id="top">
 <div class="day-nav"><a href="day1.html" class="active">Day 1 開幕場</a><a href="day2.html">Day 2 Main Stage</a></div>
-<h1 id="ai-engineer-paris-2026day-1開幕場演講心得報告">AI Engineer Paris 2026（Day 1・開幕場）演講心得報告</h1>
+<div class="cover"><p class="kicker">AI ENGINEER PARIS 2026 · DEEP-GUIDE REPORT</p><h1 id="ai-engineer-paris-2026day-1開幕場演講心得報告">AI Engineer Paris 2026（Day 1・開幕場）演講心得報告</h1><div class="meta"><span>開幕場 · 3 場演講 · 2026-09-23 · Paris</span></div></div>
 <h2 id="目錄">1. 目錄</h2>
 <ul>
 <li><a href="#econ-history">What Can Economic History Teach Us About the AI Moment?｜AI 這一刻，經濟史教我們的事（🟢）</a> — Clemens Rawert, Langfuse</li>
@@ -307,15 +381,15 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <h2 id="各議程筆記">4. 各議程筆記</h2>
 <p><a id="econ-history"></a></p>
 <h2 id="what-can-economic-history-teach-us-about-the-ai-momentai-這一刻經濟史教我們的事">What Can Economic History Teach Us About the AI Moment?｜AI 這一刻，經濟史教我們的事</h2>
-<h3 id="a.-基本資訊">A. 基本資訊</h3>
+<h3 id="a.-基本資訊" data-letter="A"><span class="h3-label">基本資訊</span></h3>
 <ul>
 <li>講者：Clemens Rawert（Langfuse）</li>
 <li>時間與地點：Day1（9/23）17:50–18:15，Main Stage</li>
 <li>關鍵字：General Purpose Technology、生產力弔詭、擴散落差（diffusion lag）、J-Curve、基礎建設投資泡沫</li>
-<li>品質等級：🟢 高密度</li>
+<li>品質等級：<span class="grade grade-green">🟢 高密度</span></li>
 </ul>
 <p><strong>講者背景</strong>：Clemens Rawert 是開源 LLM 觀測平台 Langfuse 的共同創辦人之一（與 Max Deichmann、Marc Klingen 共同創立於 2022 年，2023 年入選 Y Combinator W23 梯隊）。創業前曾在德國金融科技獨角獸 Scalable Capital 創辦團隊身邊工作，經歷過一輪獨角獸募資與一次併購，並協助公司從百人規模擴張到四百人。他在倫敦政經學院（LSE）取得經濟史碩士學位，也曾在牛津大學攻讀經濟史博士（未完成學業），這段學術訓練直接呼應了本場演講以經濟史類比 AI 生產力弔詭的切入角度。</p>
-<h3 id="b.-核心思想煉金">B. 核心思想煉金</h3>
+<h3 id="b.-核心思想煉金" data-letter="B"><span class="h3-label">核心思想煉金</span></h3>
 <p><strong>思想寶石</strong>：</p>
 <ol type="1">
 <li>每一次通用技術革命（蒸汽機、電力、電腦）都出現同樣的「發明先行、生產力落後」現象，而且落後的原因從來不是核心技術本身不夠好，而是「圍繞它重新設計組織」的工程沒做完——這代表 AI 現階段對生產力貢獻有限，未必是模型能力不足，而是企業還沒完成組織重構。🔑 反直覺（挑戰「模型越強生產力自然跟上」的假設）／🔄 可遷移（電力需要重新設計工廠佈局，電腦需要重新設計供應鏈與企業流程，AI 對應的是重新設計工作流程與組織分工）／⚡ 行動改變（讀者角色應把預算重心從「等更強的模型」轉向「投資組織與流程重構」）。</li>
@@ -325,7 +399,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <blockquote>
 <p>“You can see the computer age everywhere but in the productivity statistics.” ——經濟學家 Robert Solow，1987 年（講者引用，用來說明技術普及與統計資料反映生產力之間的落差）</p>
 </blockquote>
-<h3 id="c.-內容摘要與結構分析">C. 內容摘要與結構分析</h3>
+<h3 id="c.-內容摘要與結構分析" data-letter="C"><span class="h3-label">內容摘要與結構分析</span></h3>
 <p><strong>演講主旨</strong>：蒸汽機在 1712 年就被發明出來，但生產力統計數字真正開始反映這件事，是 1830 年代——中間隔了超過一百年。電力的落差短一點：Edison 在 1882 年裝設第一座發電廠，但要等到工廠把「所有機器共用一條皮帶驅動」的佈局，換成「每台機器各自配一個馬達」的單機驅動系統，電力才真正吃下工廠用電的八成，這中間也過了將近五十年。電腦的故事讀者可能更熟——經濟學家 Robert Solow 在 1987 年說了一句後來被反覆引用的話：「你到處都看得到電腦時代的痕跡，就是在生產力統計數字裡看不到。」這句話講完之後又過了將近十年，企業才透過 ERP、資料庫、供應鏈數位化，讓生產力數字追上技術本身。</p>
 <p>三次革命，三種技術，同一個落差模式：不是核心技術不夠好，是「圍繞它重新設計組織」的工程還沒做完。蒸汽機需要的是技術本身持續改良；電力需要的是重新畫工廠的物理佈局圖；電腦需要的是企業重新設計流程與技能配置。這也是為什麼「模型越強，生產力自然跟上」這個聽起來很合理的假設，套進歷史脈絡裡反而站不住腳——現在 AI 對生產力的貢獻有限，未必是模型不夠強，更可能是企業還沒把工作流程和組織分工拆掉重建。</p>
 <p>把這個框架套回今天，AI 基礎建設的投資規模已經逼近史上幾次最大的投資潮：1840 年代英國鐵路投資佔 GDP 5 到 7%，1999 年網路光纖熱潮佔 GDP 1 到 1.5%，而今年 AI 基礎建設投資已經達到美國 GDP 約 1.8%，照目前速度推估，2028 年會摸到 3%。經濟學界對這筆投資能帶來多少成長，估計值分歧到近乎荒謬——樂觀陣營押注「遞迴自我改進」能帶來每年高個位數百分點的額外成長，保守陣營給出的數字只有 0.1 個百分點上下。這種分裂本身就是一個訊號：沒有人真正確定 AI 屬於哪一種技術。</p>
@@ -377,12 +451,12 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li><strong>Unit drive system（單機驅動系統）</strong>：每台機器各自配一個電動馬達，取代過去所有機器共用一條皮帶／傳動軸驅動的「集中驅動」模式，是電力真正發揮優勢的關鍵設計轉變。</li>
 <li><strong>Solow 生產力弔詭</strong>：電腦技術已廣泛普及，但統計上遲遲看不到對應的生產力提升的現象。</li>
 </ul>
-<h3 id="d.-議程知識架構圖">D. 議程知識架構圖</h3>
+<h3 id="d.-議程知識架構圖" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
 <img src="images/econ-history.png" alt="通用技術從發明到生產力顯現的擴散落差" />
 <figcaption aria-hidden="true">通用技術從發明到生產力顯現的擴散落差</figcaption>
 </figure>
-<h3 id="e.-實務應用與案例解析">E. 實務應用與案例解析</h3>
+<h3 id="e.-實務應用與案例解析" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
 <p><strong>實務案例</strong>：講者以三段歷史案例（蒸汽機、電力、電腦）作為類比架構，並非單一企業案例，重點在於指出每次技術革命所需的「互補建設」類型不同：</p>
 <ul>
 <li>蒸汽機需要技術本身持續改良（高壓蒸汽機、鐵路、輪船）</li>
@@ -391,7 +465,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 </ul>
 <p><strong>技術/工具/方法</strong>：GPT 三特徵判準（普及性、可持續改進性、互補性）可作為評估「這是否為真正的通用技術」的檢核工具；J-Curve 框架可用於向管理層解釋「投資初期生產力下滑是正常現象，不代表投資失敗」。</p>
 <p><strong>經驗教訓</strong>：技術本身準備好，不代表組織準備好承接它——電力案例最鮮明，「可以很快把蒸汽機換成電動馬達」但那不是電力真正發揮優勢的方式，真正的效益要等到整個工廠佈局邏輯被顛覆重建之後才出現。</p>
-<h3 id="f.-深度洞察與反思">F. 深度洞察與反思</h3>
+<h3 id="f.-深度洞察與反思" data-letter="F"><span class="h3-label">深度洞察與反思</span></h3>
 <p><strong>未來趨勢與跨域連結</strong>：</p>
 <ul>
 <li>講者將 AI 定位為同時具備兩種技術性質的特例——既是「通用技術」（普及全產業），也是「能加速研發本身的技術」（像顯微鏡、印刷術、企業研究實驗室），例如近期已在數學研究上看到 AI 加速發現的案例</li>
@@ -402,7 +476,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li>具體反例或對立觀點：講者引用的樂觀估計來自主張「遞迴自我改進」可能帶來高個位數 GDP 成長點數的經濟學派；但另一端，經濟學家 Daron Acemoglu 在其研究中對 AI 未來十年總要素生產力貢獻的估計相對保守（約落在 1% 以下的量級），主張多數企業任務並不適合被 AI 自動化取代，這與講者引用的樂觀情境形成明顯對比，講者本人也承認經濟學界目前並無共識。</li>
 <li>前提條件與適用邊界：講者的類比成立的前提是「AI 屬於真正的通用技術」，若 AI 的效益最終被證明侷限在少數幾個垂直領域（不具備跨產業普及性），則整套「百年擴散落差」的歷史類比就不適用，因為過去三個案例（蒸汽機、電力、電腦）都已被事後證實具備全產業普及性，而 AI 目前仍在驗證中。</li>
 </ul>
-<h3 id="g.-個人啟發與行動方案">G. 個人啟發與行動方案</h3>
+<h3 id="g.-個人啟發與行動方案" data-letter="G"><span class="h3-label">個人啟發與行動方案</span></h3>
 <p><strong>思維啟發</strong>：</p>
 <ul>
 <li>這場演講挑戰了「模型能力提升 = 組織立即受惠」的直覺假設</li>
@@ -418,15 +492,15 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <hr />
 <p><a id="ai-eng-next"></a></p>
 <h2 id="the-next-level-of-ai-engineeringai-工程的下一個層次">The next level of AI engineering｜AI 工程的下一個層次</h2>
-<h3 id="a.-基本資訊-1">A. 基本資訊</h3>
+<h3 id="a.-基本資訊-1" data-letter="A"><span class="h3-label">基本資訊</span></h3>
 <ul>
 <li>講者：Kitze M（Sizzy，自稱 “master tinker”）</li>
 <li>時間與地點：Day1（9/23）18:15–18:40，Main Stage</li>
 <li>關鍵字：一次性沙箱（orbs）、軟體工廠、把規則搬進 linter、agent 分類學、個人基礎設施自建</li>
-<li>品質等級：🟡 中密度（大量個人工具清單與產品自我宣傳，僅保留通過三道關卡的內容，其餘標註略過）</li>
+<li>品質等級：<span class="grade grade-yellow">🟡 中密度</span>（大量個人工具清單與產品自我宣傳，僅保留通過三道關卡的內容，其餘標註略過）</li>
 </ul>
 <p><strong>講者背景</strong>：Kitze（公開資料多以此藝名而非本名活躍於開發者社群，查無進一步真實姓名的可靠來源）出身北馬其頓，是長年在開發者社群活躍的連續創業者與 JavaScript 開發者。他最為人知的作品是開發者專用瀏覽器 Sizzy（2017 年因反覆手動調整瀏覽器視窗測試響應式網頁的挫折而誕生），另外也創辦過教學平台 React Academy 以及 Twizzle、JSUI 等多款獨立工具。他在社群中以高強度自建個人工具鏈與基礎設施著稱，這與他在演講中自稱 “master tinker” 的定位相符；其餘更細節的職涯經歷（如是否有正式任職紀錄、學歷）查無公開詳細資料。</p>
-<h3 id="b.-核心思想煉金-1">B. 核心思想煉金</h3>
+<h3 id="b.-核心思想煉金-1" data-letter="B"><span class="h3-label">核心思想煉金</span></h3>
 <p><strong>思想寶石</strong>：</p>
 <ol type="1">
 <li>讓 agent 在共用的 worktree 或本機環境裡工作，看似有版本控制隔離，其實不是真正的沙箱——講者自己就曾因為在 worktree 裡「順手測資料庫」而洗掉正式環境資料庫，事後才轉向「每個任務都丟進一次性的迷你 VM（他稱為 orbs），跑完即銷毀，並用佇列限制同時運作數量」的做法。🔑 反直覺（挑戰「git worktree 或手動審查權限就足夠隔離風險」的常見假設）／🔄 可遷移（可套用到任何團隊的 CI/CD 或 agent 執行環境設計，不限於個人開發者）／⚡ 行動改變（讀者角色應重新檢視公司內部 agent／自動化腳本是否有真正的任務級沙箱隔離，而非只靠人工審查權限）。</li>
@@ -436,7 +510,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <blockquote>
 <p>“A work tree is not an actual sandbox.”（Worktree 並不是真正的沙箱。）</p>
 </blockquote>
-<h3 id="c.-內容摘要與結構分析-1">C. 內容摘要與結構分析</h3>
+<h3 id="c.-內容摘要與結構分析-1" data-letter="C"><span class="h3-label">內容摘要與結構分析</span></h3>
 <p><strong>演講主旨</strong>：講者在一個 git worktree 裡工作，心裡想的只是「順手看一下資料庫」——下一秒，正式環境的資料庫被清空了。這不是一個假設情境，是他自己踩過的坑。Worktree 給人一種有版本控制隔離的安全感，但那只是 git 層級的隔離，跟執行環境的隔離是兩回事，「A work tree is not an actual sandbox」這句話，他是用真金白銀換來的。</p>
 <p>事後他的解法，是把每個任務丟進一次性的迷你虛擬機（他稱為 orbs）：內含資料庫種子、瀏覽器等完整環境，任務跑完就銷毀，並用佇列把同時運作的數量鎖在八個左右，避免壓垮本機資源。這套用 Proxmox 加 Podman 搭出來的架構，聽起來像是個人開發者的極端案例，但它指向一個更普遍的問題——多數團隊對 agent 的信任，仍然建立在「有版本控制」或「人工審查過權限」這種表面上的安全感，而不是真正的任務級隔離。</p>
 <p>信任崩壞的另一條路徑，是權限本身的演進速度。講者形容自己這幾年的軌跡是：從手動複製貼上 ChatGPT 的輸出，到逐一審查 agent 的權限，到現在幾乎所有人都直接開放全權限，俗稱「full yellow mode」——連正式環境資料庫和客戶資料都在內。他也提出一個沒有數據佐證、純粹是個人觀察的預測：組織裡很大一部分人力，其實只是把主管的提示詞丟進 LLM、不太審查結果就轉手交出去的「肉身代理」，這件事遲早會被發現，並回頭影響人力配置。這段純屬臆測，讀者不必照單全收，但它點出了一個真實的現象：把關這件事，正在被悄悄地掏空。</p>
@@ -484,12 +558,12 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li><strong>Meat proxy</strong>：指人在 AI 與交辦者之間只做「複製貼上」的傳話角色，未實質把關內容品質。</li>
 <li><strong>Software factory（軟體工廠）</strong>：講者用來描述將 agent 任務標準化為「編碼 → 審查 → 測試 → 交付」固定流程的架構化做法，對比目前多數團隊仍是零散拼湊。</li>
 </ul>
-<h3 id="d.-議程知識架構圖-1">D. 議程知識架構圖</h3>
+<h3 id="d.-議程知識架構圖-1" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
 <img src="images/ai-eng-next.png" alt="Agent 任務隔離與守門機制流程" />
 <figcaption aria-hidden="true">Agent 任務隔離與守門機制流程</figcaption>
 </figure>
-<h3 id="e.-實務應用與案例解析-1">E. 實務應用與案例解析</h3>
+<h3 id="e.-實務應用與案例解析-1" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
 <p><strong>實務案例</strong>：講者展示自建的個人「軟體工廠」（Bench）：任務先進入 SoulBot（編碼）與 SoulFast（審查）之間循環，直到通過審查，再交給 Tester 實際點擊測試，全程可在手機上遠端操作與審核，不再直接對話式操控 CLI 或桌面 App。</p>
 <p><strong>技術/工具/方法</strong>：Proxmox（虛擬化分層作業系統，可同時跑多個 Linux／Windows 虛擬機）、Podman（容器工具，講者用來限制沙箱無法存取正式環境憑證）、Herder（跨機器持久化終端 session 管理工具）、Exeutor（統一 MCP 連接器代理，一次串接 Gmail、GitHub、Cloudflare 等服務）、Skillbox（把技能從零散 Markdown 檔案改為可自架、可依用途打包成「skill bundle」的服務）、Oxlint / Ultracite / Anti-Slop（程式碼規則守門三件套）。</p>
 <p><strong>經驗教訓</strong>：</p>
@@ -497,7 +571,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li>講者強調自己曾經「嘲笑」自架伺服器、Proxmox、Pi 等重度工具化的做法，但隨著多帳號配額耗盡、環境切換成本升高，最終還是走向自建基礎設施</li>
 <li>核心教訓是：規則不寫進可執行機制，agent 在壓力下（例如為了讓測試通過）會自行關閉安全防護（如停用 lint 規則）交差了事</li>
 </ul>
-<h3 id="f.-深度洞察與反思-1">F. 深度洞察與反思</h3>
+<h3 id="f.-深度洞察與反思-1" data-letter="F"><span class="h3-label">深度洞察與反思</span></h3>
 <p><strong>未來趨勢與跨域連結</strong>：</p>
 <ul>
 <li>講者觀察到目前市面上的 agent 編排工具（orchestrator）介面高度同質化（左側聊天列表、中間對話、右側 git diff），暗示這個工具品類還沒有找到真正貼合「工廠化流程」的介面典範</li>
@@ -509,7 +583,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li>具體反例或對立觀點：講者對「meat proxy 明年會被大量裁員」的預測屬於個人直覺推測，未附上任何資料或研究佐證，與業界常見的漸進式技能轉型觀點（例如多數人資與轉型研究傾向認為 AI 導致的職務調整是漸進重組而非斷崖式裁員）形成對比，讀者不應直接採信此預測作為決策依據。</li>
 <li>前提條件與適用邊界：講者的「orbs 一次性沙箱」做法建立在他是個人開發者、擁有自建 Linux／Proxmox 硬體與高度技術自主權的前提上；對於受限於企業 IT 治理、合規審查、或缺乏自建硬體資源的中型組織，直接複製這套做法的可行性需要打折扣，較適合先參考其「任務級隔離」的設計原則，而非直接複製其個人工具鏈。</li>
 </ul>
-<h3 id="g.-個人啟發與行動方案-1">G. 個人啟發與行動方案</h3>
+<h3 id="g.-個人啟發與行動方案-1" data-letter="G"><span class="h3-label">個人啟發與行動方案</span></h3>
 <p><strong>思維啟發</strong>：</p>
 <ul>
 <li>這場演講對讀者角色的啟發在於，「開放 agent 全部權限」與「人工逐一審查每個 agent 動作」都不是長期可持續的治理模式</li>
@@ -524,15 +598,15 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <hr />
 <p><a id="frontier-ai"></a></p>
 <h2 id="building-frontier-ai打造尖端-ai">Building Frontier AI｜打造尖端 AI</h2>
-<h3 id="a.-基本資訊-2">A. 基本資訊</h3>
+<h3 id="a.-基本資訊-2" data-letter="A"><span class="h3-label">基本資訊</span></h3>
 <ul>
 <li>講者：Lélio Renard Lavaud（Mistral AI，VP of Engineering，公司第三號員工）</li>
 <li>時間與地點：Day1（9/23）18:40–19:05，Main Stage</li>
 <li>關鍵字：動態最小權限、主權四維度（資料／智慧／運算／操作）、Prompt Injection 防禦、統一 Harness、Agentic Safety</li>
-<li>品質等級：🟡 中密度（內容含大量併購、募資、產品陣容介紹屬公關性質，僅保留通過三道關卡的 agentic safety 與 sovereignty 論點，其餘標註略過）</li>
+<li>品質等級：<span class="grade grade-yellow">🟡 中密度</span>（內容含大量併購、募資、產品陣容介紹屬公關性質，僅保留通過三道關卡的 agentic safety 與 sovereignty 論點，其餘標註略過）</li>
 </ul>
 <p><strong>講者背景</strong>：Lélio Renard Lavaud 現任 Mistral AI 的 VP of Engineering，是公司創立初期即加入的早期成員。他畢業於法國綜合理工學院（École Polytechnique），主修電腦科學與電機工程；加入 Mistral 前曾擔任新創公司 Fasfox、Foxtech 的董事長／執行長，也曾在 KOSC Telecom 擔任顧問，負責網路建模相關的內部平台設計。他是 Mistral 7B 等研究成果的共同貢獻者，並經常在公開場合談論開放模型如何幫助企業避免供應商鎖定、提升透明度。</p>
-<h3 id="b.-核心思想煉金-2">B. 核心思想煉金</h3>
+<h3 id="b.-核心思想煉金-2" data-letter="B"><span class="h3-label">核心思想煉金</span></h3>
 <p><strong>思想寶石</strong>：</p>
 <ol type="1">
 <li>Agent 因為擁有高權限連接器與資料存取能力，又具備「不確定性」（同一個 prompt injection 這次被擋下，下次模型行為改變後可能就擋不住），這代表傳統「寫死規則、一次性設定完權限就結案」的守門方式從根本上不適用於 agent 系統——真正的解法是把權限設計成「依任務步驟動態調整」的即時授權，而不是靜態白名單。這件事直接挑戰企業資安團隊慣用的「上線前審一次權限」思維。🔑 反直覺（挑戰「權限審查是一次性關卡」的傳統 IAM 假設）／🔄 可遷移（可套用到任何導入 agent 的企業 IAM／權限治理設計，不限於 Mistral 自家產品）／⚡ 行動改變（讀者角色應重新評估企業內 agent 的權限模型是否仍是靜態白名單，若是，需要規劃改為情境性、時效性的動態授權機制）。</li>
@@ -542,7 +616,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <blockquote>
 <p>“Since they’re nondeterministic, it means that it’s really hard to put hardcoded guardrail… It’s hard because next run it might not do it actually.” （因為 agent 是非決定性的，很難寫死防護規則——這次擋下來了，不代表下一次還擋得住。）</p>
 </blockquote>
-<h3 id="c.-內容摘要與結構分析-2">C. 內容摘要與結構分析</h3>
+<h3 id="c.-內容摘要與結構分析-2" data-letter="C"><span class="h3-label">內容摘要與結構分析</span></h3>
 <p><strong>演講主旨</strong>：企業資安團隊習慣的邏輯是「上線前審一次權限，之後就交給使用者自己負責」。講者在台上直接示範了這套邏輯為什麼在 agent 時代開始失靈：一個藏在 GitHub issue 裡的 prompt injection，在使用者完全沒有要求的情況下，讓公司內部的 CLI 工具試圖把金鑰外洩出去。攻擊者不需要碰到系統本身，只需要把惡意指令埋進 agent 會去讀取的外部內容裡。</p>
 <p>問題的根源，他講得很直白：「因為 agent 是非決定性的，很難寫死防護規則——這次擋下來了，不代表下一次還擋得住。」這句話等於宣告了傳統 IAM 那種「寫死規則、審一次、結案」的思維從根本上不適用於 agent——agent 擁有連接多個系統的高權限，行為卻會隨模型更新而改變，兩者疊在一起，靜態白名單注定是漏洞。他提出的解法是動態最小權限：依任務執行的當下步驟即時授予所需範圍，而不是一次性授予完整權限；具體做法則分三層——企業管理員先定義分類器規則（PII、密鑰、公司知識等）與門檻，再把規則綁定到政策，最後套用到 Web、App、CLI 等不同產品介面，使用者不必自己動手設定就受到保護。</p>
 <p>防護機制之外，他也花了篇幅描繪這套系統要服務的對象——不是工程師，而是像虛構角色 Steven 這樣的財務背景使用者，自稱 tinkerer 但不寫程式，透過自然語言 prompt 就能讓 agent 串接 Excel、Notion、資料湖，產出一個可以分享給同事的內部應用。這背後對應的是講者對「主權」概念的拆解——不是喊一句「資料要在地化」的口號，而是拆成四個可以逐項盤點的維度：資料存放與存取地、模型微調發生的地點、推論時資料實際流經的路徑，以及稽核監控紀錄的完整性。四個維度分開檢核，比單一問句「資料放在哪」問得出更完整的風險輪廓。</p>
@@ -590,12 +664,12 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li><strong>動態最小權限</strong>：依任務執行的當下步驟即時授予所需的最小操作範圍，而非一次性授予完整權限或依賴人工事前審查。</li>
 <li><strong>Sovereignty（主權）四維度</strong>：資料主權（data）、智慧主權（intelligence，模型微調地點）、運算主權（compute，推論資料流經路徑）、操作主權（operational，稽核日誌與監控完整性）。</li>
 </ul>
-<h3 id="d.-議程知識架構圖-2">D. 議程知識架構圖</h3>
+<h3 id="d.-議程知識架構圖-2" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
 <img src="images/frontier-ai.png" alt="企業 Agent 動態最小權限防護流程" />
 <figcaption aria-hidden="true">企業 Agent 動態最小權限防護流程</figcaption>
 </figure>
-<h3 id="e.-實務應用與案例解析-2">E. 實務應用與案例解析</h3>
+<h3 id="e.-實務應用與案例解析-2" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
 <p><strong>實務案例</strong>：</p>
 <ul>
 <li>比利時企業客戶的 KYC 流程導入兩個 agent 協作後，middle office 收到不完整文件的比例從 80% 降至 10%</li>
@@ -603,7 +677,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 </ul>
 <p><strong>技術/工具/方法</strong>：Studio（開發者導向的模型應用原語，如長時執行工作流、沙箱）、Vibe（面向終端使用者與企業建構者的統一產品介面）、分類器＋政策的分層防護架構（規則定義門檻與來源 → 綁定政策 → 套用到指定產品介面）、OCR 4.1（可辨識手寫與掃描老文件的版面解析模型，用於企業文件庫的 RAG 前處理）。</p>
 <p><strong>經驗教訓</strong>：講者強調防護機制若「無差別套用在所有情境」會直接扼殺 agent 原本的高權限效益（everything becomes too restricted），因此關鍵不是「要不要給權限」而是「權限的授予要能依情境動態調整、且要能被稽核」，這與一次性審批或一次性封鎖的傳統思路根本不同。</p>
-<h3 id="f.-深度洞察與反思-2">F. 深度洞察與反思</h3>
+<h3 id="f.-深度洞察與反思-2" data-letter="F"><span class="h3-label">深度洞察與反思</span></h3>
 <p><strong>未來趨勢與跨域連結</strong>：</p>
 <ul>
 <li>講者主張企業未來會走向「統一 harness／統一入口」取代「依角色分產品」（工程師用一套、財務用另一套），讓同一套 agent 基礎設施依使用者情境自動調整呈現方式</li>
@@ -614,7 +688,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
 <li>具體反例或對立觀點：資安研究者 Simon Willison 針對 prompt injection 提出「致命三重奏」（lethal trifecta）論述，主張只要一個 agent 同時具備「讀取不可信內容」「存取私密資料」「能對外通訊」三種能力，目前業界尚無可靠的模型層或分類器層防禦手段能完全杜絕外洩風險，唯一穩妥做法是在架構層面切斷三者同時存在的組合，這與講者強調「用分類器規則＋動態權限即可有效防護」的樂觀立場形成明顯對比，講者展示的防禦示範也僅針對單一示範案例，未說明對進化型或未知模式注入攻擊的防禦效果。</li>
 <li>前提條件與適用邊界：講者的動態權限與分層防護架構，前提是企業已經採用 Mistral 的統一產品線（Studio／Vibe）並由企業管理員集中設定政策；若企業的 agent 來自多家不同供應商、分散在不同介面下運作，這套「政策綁定套用範圍」的治理模式便難以跨供應商統一實施，需要額外的整合層才能達到同等效果。</li>
 </ul>
-<h3 id="g.-個人啟發與行動方案-2">G. 個人啟發與行動方案</h3>
+<h3 id="g.-個人啟發與行動方案-2" data-letter="G"><span class="h3-label">個人啟發與行動方案</span></h3>
 <p><strong>思維啟發</strong>：</p>
 <ul>
 <li>這場演講對讀者角色的主要挑戰在於：企業導入 agent 的資安思維若還停留在「上線前審一次權限、之後就交給使用者自行負責」，將難以應對 agent 本質上的不確定性</li>
@@ -660,8 +734,6 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose"
     clone.removeAttribute("style");
     var vb = svg.viewBox && svg.viewBox.baseVal;
     var nativeWidth = vb ? vb.width : svg.getBoundingClientRect().width;
-    // 不要用 90vw 夾住寬度——太寬的圖（例如 timeline）夾住後反而比原生尺寸還小、等於沒放大。
-    // 一律放大到至少原生寬度的 1.3 倍、最低 900px，超出視窗的部分交給 .lightbox-inner 的 overflow:auto 用捲動處理。
     var targetWidth = Math.max(nativeWidth * 1.3, 900);
     clone.style.width = targetWidth + "px";
     clone.style.height = "auto";
@@ -673,8 +745,6 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose"
     inner.innerHTML = "";
     var clone = img.cloneNode(true);
     clone.removeAttribute("style");
-    // 點陣圖不用放大公式——img 沒有指定 width 時瀏覽器會用原生解析度顯示，
-    // 再靠 .lightbox-inner img 的 max-width/max-height 自然限制在視窗內，不會被拉伸模糊。
     inner.appendChild(clone);
     lightbox.classList.add("is-open");
   }
