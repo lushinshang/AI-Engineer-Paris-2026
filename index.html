@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI Engineer Paris 2026｜思想煉金報告</title>
 <meta name="description" content="AI Engineer Paris 2026 大會兩天演講的深度筆記報告：開幕場三講 + Main Stage 十二講，含講者背景、深度導讀、跨議程交叉分析與資訊圖表。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:title" content="AI Engineer Paris 2026｜思想煉金報告">
+<meta property="og:description" content="大會兩天演講的深度筆記——逐場講者背景、思想煉金導讀、跨議程交叉分析與資訊圖表。">
+<meta property="og:image" content="https://lushinshang.github.io/AI-Engineer-Paris-2026/images/summary.png">
+<meta property="og:url" content="https://lushinshang.github.io/AI-Engineer-Paris-2026/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Engineer Paris 2026｜思想煉金報告">
+<meta name="twitter:description" content="大會兩天演講的深度筆記——逐場講者背景、思想煉金導讀、跨議程交叉分析與資訊圖表。">
+<meta name="twitter:image" content="https://lushinshang.github.io/AI-Engineer-Paris-2026/images/summary.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Noto+Serif+TC:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -60,6 +70,34 @@ body {
 }
 .theme-toggle:hover { color: var(--fg); border-color: var(--fg); }
 
+figure.summary-figure { margin: 24px auto 0; padding: 0 20px; max-width: 720px; }
+figure.summary-figure img {
+  display: block; width: 100%; max-width: 640px; margin: 0 auto;
+  border: 1px solid var(--border); cursor: zoom-in;
+  aspect-ratio: 16 / 9; object-fit: cover;
+}
+@media (max-width: 640px) {
+  figure.summary-figure img { aspect-ratio: 9 / 16; max-width: 360px; }
+}
+
+.lightbox {
+  display: none; position: fixed; inset: 0; z-index: 200;
+  background: rgba(15,16,14,0.92);
+  align-items: center; justify-content: center; padding: 28px;
+  cursor: zoom-out;
+}
+.lightbox.is-open { display: flex; }
+.lightbox-inner {
+  background: var(--card-bg); padding: 24px;
+  max-width: 96vw; max-height: 92vh; overflow: auto; cursor: default;
+  border: 1px solid var(--border);
+}
+.lightbox-inner img { max-width: 92vw; max-height: 86vh; width: auto; height: auto; display: block; }
+.lightbox-hint {
+  position: absolute; top: 18px; right: 22px; color: rgba(255,255,255,0.7);
+  font-family: var(--mono); font-size: 12px;
+}
+
 main { max-width: 720px; margin: 0 auto; padding: 44px 20px 80px; }
 .kicker {
   font-family: var(--mono); font-size: 12.5px; color: var(--accent); margin: 0 0 14px;
@@ -103,6 +141,12 @@ footer a { color: var(--link); }
 </style>
 </head>
 <body>
+<figure class="summary-figure">
+  <picture>
+    <source media="(max-width: 640px)" srcset="images/summary-mobile.png">
+    <img src="images/summary.png" alt="AI Engineer Paris 2026 思想煉金報告總覽：AI 生產力弔詭、Agent 治理典範轉移、品質控管典範轉移、基礎設施路線之爭、Agent 正成為新買家、大會統計">
+  </picture>
+</figure>
 <div class="topbar">
   <div class="topbar-inner">
     <span class="brand">AI·ENGINEER·PARIS·2026</span>
@@ -128,6 +172,10 @@ footer a { color: var(--link); }
   </div>
   <footer>逐字稿來源：YouTube 官方字幕。內容為 AI 輔助整理，發布前請自行核實引用與數據。</footer>
 </main>
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-hint">點擊背景或按 Esc 關閉</span>
+  <div class="lightbox-inner" id="lightboxInner"></div>
+</div>
 <script>
 (function () {
   var btn = document.getElementById("themeToggle");
@@ -140,6 +188,37 @@ footer a { color: var(--link); }
     var next = cur === "dark" ? "light" : "dark";
     root.setAttribute("data-theme", next);
     try { localStorage.setItem("theme", next); } catch (e) {}
+  });
+})();
+
+(function () {
+  var lightbox = document.getElementById("lightbox");
+  var inner = document.getElementById("lightboxInner");
+
+  function openLightboxImg(img) {
+    inner.innerHTML = "";
+    // 用 currentSrc 而非 src——<picture> 依螢幕寬度切換來源，
+    // 讀 currentSrc 才能在手機上放大出清晰的 9:16 版本。
+    var clone = document.createElement("img");
+    clone.src = img.currentSrc || img.src;
+    clone.alt = img.alt;
+    inner.appendChild(clone);
+    lightbox.classList.add("is-open");
+  }
+  function closeLightbox() {
+    lightbox.classList.remove("is-open");
+    inner.innerHTML = "";
+  }
+
+  document.addEventListener("click", function (e) {
+    var figImg = e.target.closest("figure.summary-figure img");
+    if (figImg) openLightboxImg(figImg);
+  });
+  lightbox.addEventListener("click", function (e) {
+    if (e.target === lightbox) closeLightbox();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeLightbox();
   });
 })();
 </script>
