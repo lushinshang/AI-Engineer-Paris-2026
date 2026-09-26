@@ -207,9 +207,13 @@ figure { margin: 22px 0; }
 figure img {
   display: block; width: 100%; height: auto;
   border: 1px solid var(--border); cursor: zoom-in;
+  aspect-ratio: 16 / 9; object-fit: cover;
 }
 figure figcaption {
   font-family: var(--mono); text-align: left; font-size: 11.5px; color: var(--muted); margin-top: 8px;
+}
+@media (max-width: 640px) {
+  figure img { aspect-ratio: 9 / 16; }
 }
 
 .lightbox {
@@ -455,7 +459,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
 </ul>
 <h3 id="d.-議程知識架構圖" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
-<img src="images/pixel-robots.png" alt="FLUX 推論管線六大客製化環節" />
+<picture><source media="(max-width: 640px)" srcset="images/pixel-robots-mobile.png"><img src="images/pixel-robots.png" alt="FLUX 推論管線六大客製化環節" /></picture>
 <figcaption aria-hidden="true">FLUX 推論管線六大客製化環節</figcaption>
 </figure>
 <h3 id="e.-實務應用與案例解析" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
@@ -554,7 +558,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
 </ul>
 <h3 id="d.-議程知識架構圖-1" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
-<img src="images/voice-orb.png" alt="ElevenLabs Orb 大規模生成架構" />
+<picture><source media="(max-width: 640px)" srcset="images/voice-orb-mobile.png"><img src="images/voice-orb.png" alt="ElevenLabs Orb 大規模生成架構" /></picture>
 <figcaption aria-hidden="true">ElevenLabs Orb 大規模生成架構</figcaption>
 </figure>
 <h3 id="e.-實務應用與案例解析-1" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
@@ -653,7 +657,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
 </ul>
 <h3 id="d.-議程知識架構圖-2" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
-<img src="images/vllm-transformers.png" alt="Transformers 模型載入 vLLM 的手術式替換流程" />
+<picture><source media="(max-width: 640px)" srcset="images/vllm-transformers-mobile.png"><img src="images/vllm-transformers.png" alt="Transformers 模型載入 vLLM 的手術式替換流程" /></picture>
 <figcaption aria-hidden="true">Transformers 模型載入 vLLM 的手術式替換流程</figcaption>
 </figure>
 <h3 id="e.-實務應用與案例解析-2" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
@@ -757,7 +761,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
 </ul>
 <h3 id="d.-議程知識架構圖-3" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
-<img src="images/stripe-ai-economy.png" alt="AI 經濟五大模式" />
+<picture><source media="(max-width: 640px)" srcset="images/stripe-ai-economy-mobile.png"><img src="images/stripe-ai-economy.png" alt="AI 經濟五大模式" /></picture>
 <figcaption aria-hidden="true">AI 經濟五大模式</figcaption>
 </figure>
 <h3 id="e.-實務應用與案例解析-3" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
@@ -861,7 +865,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
 </ul>
 <h3 id="d.-議程知識架構圖-4" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
-<img src="images/streaming-voice.png" alt="即時語者分離 400 毫秒延遲拆解" />
+<picture><source media="(max-width: 640px)" srcset="images/streaming-voice-mobile.png"><img src="images/streaming-voice.png" alt="即時語者分離 400 毫秒延遲拆解" /></picture>
 <figcaption aria-hidden="true">即時語者分離 400 毫秒延遲拆解</figcaption>
 </figure>
 <h3 id="e.-實務應用與案例解析-4" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
@@ -973,7 +977,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
 </ul>
 <h3 id="d.-議程知識架構圖-5" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
-<img src="images/ai-infra.png" alt="AI 基礎設施走向：驅動力、走向、經濟目標" />
+<picture><source media="(max-width: 640px)" srcset="images/ai-infra-mobile.png"><img src="images/ai-infra.png" alt="AI 基礎設施走向：驅動力、走向、經濟目標" /></picture>
 <figcaption aria-hidden="true">AI 基礎設施走向：驅動力、走向、經濟目標</figcaption>
 </figure>
 <h3 id="e.-實務應用與案例解析-5" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
@@ -1090,7 +1094,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
 </ul>
 <h3 id="d.-議程知識架構圖-6" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
-<img src="images/latency-inference.png" alt="低延遲推論優化六步驟優先順序" />
+<picture><source media="(max-width: 640px)" srcset="images/latency-inference-mobile.png"><img src="images/latency-inference.png" alt="低延遲推論優化六步驟優先順序" /></picture>
 <figcaption aria-hidden="true">低延遲推論優化六步驟優先順序</figcaption>
 </figure>
 <h3 id="e.-實務應用與案例解析-6" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
@@ -1197,7 +1201,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
 </ul>
 <h3 id="d.-議程知識架構圖-7" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
-<img src="images/edge-ai.png" alt="邊緣裝置地端／雲端動態路由決策流程" />
+<picture><source media="(max-width: 640px)" srcset="images/edge-ai-mobile.png"><img src="images/edge-ai.png" alt="邊緣裝置地端／雲端動態路由決策流程" /></picture>
 <figcaption aria-hidden="true">邊緣裝置地端／雲端動態路由決策流程</figcaption>
 </figure>
 <h3 id="e.-實務應用與案例解析-7" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
@@ -1303,7 +1307,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
 </ul>
 <h3 id="d.-議程知識架構圖-8" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
-<img src="images/edge-ai.png" alt="邊緣裝置地端／雲端動態路由決策流程" />
+<picture><source media="(max-width: 640px)" srcset="images/edge-ai-mobile.png"><img src="images/edge-ai.png" alt="邊緣裝置地端／雲端動態路由決策流程" /></picture>
 <figcaption aria-hidden="true">邊緣裝置地端／雲端動態路由決策流程</figcaption>
 </figure>
 <h3 id="e.-實務應用與案例解析-8" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
@@ -1424,7 +1428,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
 </ul>
 <h3 id="d.-議程知識架構圖-9" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
-<img src="images/agentic-map-reduce.png" alt="Agentic Map-Reduce 處理 Codebase-wide 任務流程" />
+<picture><source media="(max-width: 640px)" srcset="images/agentic-map-reduce-mobile.png"><img src="images/agentic-map-reduce.png" alt="Agentic Map-Reduce 處理 Codebase-wide 任務流程" /></picture>
 <figcaption aria-hidden="true">Agentic Map-Reduce 處理 Codebase-wide 任務流程</figcaption>
 </figure>
 <h3 id="e.-實務應用與案例解析-9" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
@@ -1529,7 +1533,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
 </ul>
 <h3 id="d.-議程知識架構圖-10" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
-<img src="images/pr-bottleneck.png" alt="PR 三層品質閘門循環" />
+<picture><source media="(max-width: 640px)" srcset="images/pr-bottleneck-mobile.png"><img src="images/pr-bottleneck.png" alt="PR 三層品質閘門循環" /></picture>
 <figcaption aria-hidden="true">PR 三層品質閘門循環</figcaption>
 </figure>
 <h3 id="e.-實務應用與案例解析-10" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
@@ -1650,7 +1654,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
 </ul>
 <h3 id="d.-議程知識架構圖-11" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
-<img src="images/gemma4.png" alt="Gemma 4 效率設計" />
+<picture><source media="(max-width: 640px)" srcset="images/gemma4-mobile.png"><img src="images/gemma4.png" alt="Gemma 4 效率設計" /></picture>
 <figcaption aria-hidden="true">Gemma 4 效率設計</figcaption>
 </figure>
 <h3 id="e.-實務應用與案例解析-11" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
@@ -1727,8 +1731,11 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose"
   }
   function openLightboxImg(img) {
     inner.innerHTML = "";
-    var clone = img.cloneNode(true);
-    clone.removeAttribute("style");
+    // 用 currentSrc 而非 src——<picture> 依螢幕寬度切換來源，
+    // .src 永遠回報 <img> 的 fallback 網址，讀 currentSrc 才能在手機上放大出清晰的 9:16 版本。
+    var clone = document.createElement("img");
+    clone.src = img.currentSrc || img.src;
+    clone.alt = img.alt;
     inner.appendChild(clone);
     lightbox.classList.add("is-open");
   }

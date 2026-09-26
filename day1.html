@@ -207,9 +207,13 @@ figure { margin: 22px 0; }
 figure img {
   display: block; width: 100%; height: auto;
   border: 1px solid var(--border); cursor: zoom-in;
+  aspect-ratio: 16 / 9; object-fit: cover;
 }
 figure figcaption {
   font-family: var(--mono); text-align: left; font-size: 11.5px; color: var(--muted); margin-top: 8px;
+}
+@media (max-width: 640px) {
+  figure img { aspect-ratio: 9 / 16; }
 }
 
 .lightbox {
@@ -453,7 +457,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
 </ul>
 <h3 id="d.-議程知識架構圖" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
-<img src="images/econ-history.png" alt="通用技術從發明到生產力顯現的擴散落差" />
+<picture><source media="(max-width: 640px)" srcset="images/econ-history-mobile.png"><img src="images/econ-history.png" alt="通用技術從發明到生產力顯現的擴散落差" /></picture>
 <figcaption aria-hidden="true">通用技術從發明到生產力顯現的擴散落差</figcaption>
 </figure>
 <h3 id="e.-實務應用與案例解析" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
@@ -560,7 +564,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
 </ul>
 <h3 id="d.-議程知識架構圖-1" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
-<img src="images/ai-eng-next.png" alt="Agent 任務隔離與守門機制流程" />
+<picture><source media="(max-width: 640px)" srcset="images/ai-eng-next-mobile.png"><img src="images/ai-eng-next.png" alt="Agent 任務隔離與守門機制流程" /></picture>
 <figcaption aria-hidden="true">Agent 任務隔離與守門機制流程</figcaption>
 </figure>
 <h3 id="e.-實務應用與案例解析-1" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
@@ -666,7 +670,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
 </ul>
 <h3 id="d.-議程知識架構圖-2" data-letter="D"><span class="h3-label">議程知識架構圖</span></h3>
 <figure>
-<img src="images/frontier-ai.png" alt="企業 Agent 動態最小權限防護流程" />
+<picture><source media="(max-width: 640px)" srcset="images/frontier-ai-mobile.png"><img src="images/frontier-ai.png" alt="企業 Agent 動態最小權限防護流程" /></picture>
 <figcaption aria-hidden="true">企業 Agent 動態最小權限防護流程</figcaption>
 </figure>
 <h3 id="e.-實務應用與案例解析-2" data-letter="E"><span class="h3-label">實務應用與案例解析</span></h3>
@@ -743,8 +747,11 @@ mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose"
   }
   function openLightboxImg(img) {
     inner.innerHTML = "";
-    var clone = img.cloneNode(true);
-    clone.removeAttribute("style");
+    // 用 currentSrc 而非 src——<picture> 依螢幕寬度切換來源，
+    // .src 永遠回報 <img> 的 fallback 網址，讀 currentSrc 才能在手機上放大出清晰的 9:16 版本。
+    var clone = document.createElement("img");
+    clone.src = img.currentSrc || img.src;
+    clone.alt = img.alt;
     inner.appendChild(clone);
     lightbox.classList.add("is-open");
   }
