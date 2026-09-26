@@ -409,7 +409,11 @@ hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
 </ul>
 <p><strong>講者背景</strong>：Jakob Pörschmann 現任 Black Forest Labs（FLUX 影像/影片生成模型開發商，2024 年由前 Stability AI 成員 Robin Rombach、Andreas Blattmann、Patrick Esser 等人於德國 Freiburg 創立）的 AI Solutions 團隊負責人，駐點柏林，帶領 Forward Deployed Engineering 與 Solutions Engineering 團隊。公開資料顯示他長期關注雲端 ML 工程領域，曾以 Towards Data Science 作者身分發表技術文章，並在 Kaggle 等平台展示過 GCP 原生的模組化 Graph RAG 實作，顯示其背景橫跨資料工程與生成式 AI 應用落地。更詳細的過往任職經歷查無公開一手資料，以下內容以演講中的自我介紹與逐字稿脈絡為準。</p>
 <h3 id="b.-核心思想煉金" data-letter="B"><span class="h3-label">核心思想煉金</span></h3>
-<p><strong>思想寶石</strong>：Jakob 把「客製化」拆解成推論管線上的六個介入點，其中最反直覺的兩個洞見是：一、圖片生成模型本身早已不是瓶頸，真正的瓶頸是「如何把設計規範翻譯成模型訓練分布聽得懂的語言」，這件事完全不需要重新訓練模型，只靠客製化 prompt upsampling 的 system prompt 就能解決（🔑 反直覺：多數人以為客製化生成品質要靠微調模型本身；⚡ 行動改變性：組織導入生成式媒體時應先投資在 prompt 層而非急著微調）。二、moderation 不是模型的附屬安全機制，而是決定使用者能看到什麼、看不到什麼的核心產品介面，甚至可以是商業模式本身（🔑 反直覺：安全防護通常被視為成本中心，這裡被定位為產品差異化槓桿；🔄 可遷移性：這個「安全策略即產品分眾工具」的思維可套用到任何內容生成類 SaaS，不限影像）。</p>
+<p><strong>思想寶石</strong>：Jakob 把「客製化」拆解成推論管線上的六個介入點，其中最反直覺的兩個洞見是：</p>
+<ol type="1">
+<li>圖片生成模型本身早已不是瓶頸，真正的瓶頸是「如何把設計規範翻譯成模型訓練分布聽得懂的語言」，這件事完全不需要重新訓練模型，只靠客製化 prompt upsampling 的 system prompt 就能解決（🔑 反直覺：多數人以為客製化生成品質要靠微調模型本身；⚡ 行動改變性：組織導入生成式媒體時應先投資在 prompt 層而非急著微調）。</li>
+<li>Moderation 不是模型的附屬安全機制，而是決定使用者能看到什麼、看不到什麼的核心產品介面，甚至可以是商業模式本身（🔑 反直覺：安全防護通常被視為成本中心，這裡被定位為產品差異化槓桿；🔄 可遷移性：這個「安全策略即產品分眾工具」的思維可套用到任何內容生成類 SaaS，不限影像）。</li>
+</ol>
 <p><strong>關鍵引言</strong>：</p>
 <blockquote>
 <p>“The model technically can generate all of these different things, right? No problem. But really the design requirements end up being the bottleneck.” （模型技術上什麼都能生成，沒問題。但真正的瓶頸其實是設計規範本身。）</p>
@@ -702,7 +706,11 @@ hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
 </ul>
 <p><strong>講者背景</strong>：Arielle Le Bail 現任 Stripe 的 Head of Product, EMEA, AI and Startups，主責法國、南歐與 Benelux 地區的產品線，同時探索 AI 公司如何在用量擴張時設計出「營收與客戶價值對齊」的商業模式，常駐巴黎。她畢業於法國 ESSEC 商學院。公開資料顯示她也是一位西洋棋選手，曾兩度獲得法國該量級的全國冠軍，並以 Arielle LB 為名創作電子音樂。更詳細的職涯歷程（例如加入 Stripe 前的完整經歷）查無公開詳細資料，以下內容以演講中的自我介紹與逐字稿脈絡為準。</p>
 <h3 id="b.-核心思想煉金-3" data-letter="B"><span class="h3-label">核心思想煉金</span></h3>
-<p><strong>思想寶石</strong>：這場演講最具行動改變性的洞見是「你的下一個買家可能是一個 agent，而不是人類」——Stripe 觀察到自家公開技術文件在 2026 年夏天出現一個交叉點：被 agent 讀取的次數首度超過被人類讀取的次數，這代表產品的可發現性、文件結構、甚至定價呈現方式，都必須同時為「人類決策心理」與「agent 的資訊擷取邏輯」兩種完全不同的消費者設計（🔑 反直覺：數十年的產品與定價設計建立在人類心理學之上，如「定價 9.99 而非 10 元」，但 agent 買家根本不在意這種心理錨定；⚡ 行動改變性：企業應立即檢視自家產品文件、API 說明、定價頁面是否對 agent 友善可讀，這是一個可以馬上動手的具體改變）。第二個洞見是「定價正在從『對齊成本』轉向『對齊價值』」：同一個 AI 工具被工程師拿來做程式碼審查、被一般使用者拿來取代 Google 搜尋，運算成本可能相近，但創造的價值天差地遠，因此傳統依成本定價的邏輯已經失靈，頭部 AI 公司正轉向訂閱＋用量積分（credits）的混合模式，靠訂閱維繫關係、靠用量反映真實價值（🔄 可遷移性：這個「同一單位成本、不同單位價值」的定價邏輯，可以遷移到任何有異質使用情境的數位服務）。</p>
+<p><strong>思想寶石</strong>：</p>
+<ol type="1">
+<li>這場演講最具行動改變性的洞見是「你的下一個買家可能是一個 agent，而不是人類」——Stripe 觀察到自家公開技術文件在 2026 年夏天出現一個交叉點：被 agent 讀取的次數首度超過被人類讀取的次數，這代表產品的可發現性、文件結構、甚至定價呈現方式，都必須同時為「人類決策心理」與「agent 的資訊擷取邏輯」兩種完全不同的消費者設計（🔑 反直覺：數十年的產品與定價設計建立在人類心理學之上，如「定價 9.99 而非 10 元」，但 agent 買家根本不在意這種心理錨定；⚡ 行動改變性：企業應立即檢視自家產品文件、API 說明、定價頁面是否對 agent 友善可讀，這是一個可以馬上動手的具體改變）。</li>
+<li>第二個洞見是「定價正在從『對齊成本』轉向『對齊價值』」：同一個 AI 工具被工程師拿來做程式碼審查、被一般使用者拿來取代 Google 搜尋，運算成本可能相近，但創造的價值天差地遠，因此傳統依成本定價的邏輯已經失靈，頭部 AI 公司正轉向訂閱＋用量積分（credits）的混合模式，靠訂閱維繫關係、靠用量反映真實價值（🔄 可遷移性：這個「同一單位成本、不同單位價值」的定價邏輯，可以遷移到任何有異質使用情境的數位服務）。</li>
+</ol>
 <p><strong>關鍵引言</strong>：</p>
 <blockquote>
 <p>“Our public documentation today is more read by agents than by humans.” （我們的公開文件，如今被 agent 讀取的次數已經超過被人類讀取的次數。）</p>
@@ -805,7 +813,11 @@ hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
 </ul>
 <p><strong>講者背景</strong>：Hervé Bredin 自 2025 年 3 月起擔任 pyannoteAI 共同創辦人暨 Chief Science Officer，此前是法國國家科學研究中心（CNRS）研究科學家（目前留職停薪）。他主導開發開源 pyannote.audio 工具包，是語者分離研究社群的核心人物之一，該工具在 HuggingFace 上每月下載量達數千萬次，全球有超過十萬名開發者使用。</p>
 <h3 id="b.-核心思想煉金-4" data-letter="B"><span class="h3-label">核心思想煉金</span></h3>
-<p><strong>思想寶石</strong>：講者把「400 毫秒延遲」拆解成緩衝、網路、推論、演算法 look-ahead、非同步處理五個獨立來源，證明「延遲」從來不是單一數字，而是一組可以分別議價的參數（🔄 可遷移到任何即時系統的效能盤點；⚡ 直接改變採購/驗收即時 AI 服務時該問的問題）。更根本的是，他點出 batch diarization 與 streaming diarization 雖然輸入輸出一模一樣，卻是兩個完全不同的機器學習問題——streaming 版本因為看不到未來，連「全域 clustering」這種 batch 版本的核心解法都必須整個換掉（🔑 挑戰「把批次模型包進一個迴圈就等於即時系統」的常見假設；⚡ 改變技術團隊評估「即時化」專案工時的方式）。</p>
+<p><strong>思想寶石</strong>：</p>
+<ol type="1">
+<li>講者把「400 毫秒延遲」拆解成緩衝、網路、推論、演算法 look-ahead、非同步處理五個獨立來源，證明「延遲」從來不是單一數字，而是一組可以分別議價的參數（🔄 可遷移到任何即時系統的效能盤點；⚡ 直接改變採購/驗收即時 AI 服務時該問的問題）。</li>
+<li>更根本的是，他點出 batch diarization 與 streaming diarization 雖然輸入輸出一模一樣，卻是兩個完全不同的機器學習問題——streaming 版本因為看不到未來，連「全域 clustering」這種 batch 版本的核心解法都必須整個換掉（🔑 挑戰「把批次模型包進一個迴圈就等於即時系統」的常見假設；⚡ 改變技術團隊評估「即時化」專案工時的方式）。</li>
+</ol>
 <p><strong>關鍵引言</strong>：</p>
 <blockquote>
 <p>“Batch and real-time diarization are actually two different machine learning problems. They have very different constraints. Even though the input and the output are the same, solving it needs different approaches.” （批次與即時的語者分離其實是兩個不同的機器學習問題。雖然輸入輸出一樣，限制條件完全不同，解法也必須不同。）</p>
@@ -1026,7 +1038,11 @@ hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
 </ul>
 <p><strong>講者背景</strong>：Charles Frye 2020 年於加州大學柏克萊分校取得博士學位，研究主題為神經網路最佳化的幾何性質，現任 Modal 技術幕僚，負責 GPU 教育、推論基準測試與分散式基礎設施相關工作，主筆撰寫 Modal 的《GPU Glossary》。</p>
 <h3 id="b.-核心思想煉金-6" data-letter="B"><span class="h3-label">核心思想煉金</span></h3>
-<p><strong>思想寶石</strong>：多數工程團隊優化 LLM 推論時，本能會先衝向「GPU kernel 調校」這種最技術性、最有成就感的環節，但講者攤開的實測優化順序完全相反——speculative decoding（可帶來 4-8 倍加速）&gt; quantization（線性降低成本但改變模型輸出分布）&gt; CPU/host 端效能除錯（約 50%-2 倍加速）&gt; 跨副本路由（KV cache 命中與否可差 60 倍延遲）&gt; GPU kernel（僅剩幾個百分點空間）（🔑 直接推翻「效能優化該先修 GPU」的工程直覺；⚡ 改變團隊分配優化工時的優先順序，先做低成本高報酬的事）。另一個反直覺結論：想要「最高互動性」（tokens/sec/user）的低延遲服務，實際上只需要 8 張以內的 GPU 就能達到，遠不需要動輒 40-64 張 GPU 的巨型互聯叢集——這與「越大越好」的算力採購直覺完全相反（🔑 挑戰對低延遲服務規模的預設想像；🔄 可遷移到任何資源規劃決策：先問清楚「你要優化的指標到底是什麼」，而非直接假設更大規模更好；⚡ 直接影響採購/租用 GPU 容量的決策）。</p>
+<p><strong>思想寶石</strong>：</p>
+<ol type="1">
+<li>多數工程團隊優化 LLM 推論時，本能會先衝向「GPU kernel 調校」這種最技術性、最有成就感的環節，但講者攤開的實測優化順序完全相反——speculative decoding（可帶來 4-8 倍加速）&gt; quantization（線性降低成本但改變模型輸出分布）&gt; CPU/host 端效能除錯（約 50%-2 倍加速）&gt; 跨副本路由（KV cache 命中與否可差 60 倍延遲）&gt; GPU kernel（僅剩幾個百分點空間）（🔑 直接推翻「效能優化該先修 GPU」的工程直覺；⚡ 改變團隊分配優化工時的優先順序，先做低成本高報酬的事）。</li>
+<li>另一個反直覺結論：想要「最高互動性」（tokens/sec/user）的低延遲服務，實際上只需要 8 張以內的 GPU 就能達到，遠不需要動輒 40-64 張 GPU 的巨型互聯叢集——這與「越大越好」的算力採購直覺完全相反（🔑 挑戰對低延遲服務規模的預設想像；🔄 可遷移到任何資源規劃決策：先問清楚「你要優化的指標到底是什麼」，而非直接假設更大規模更好；⚡ 直接影響採購/租用 GPU 容量的決策）。</li>
+</ol>
 <p><strong>關鍵引言</strong>：</p>
 <blockquote>
 <p>“If you want the highest tokens per second per user, you actually want to be all the way down here [with] four or eight GPUs… which is a huge operational win.” （如果你要的是每位使用者最高的每秒 token 數，你其實只需要落在四到八張 GPU 這個區間——這是一個很大的營運上的勝利。）</p>
@@ -1142,7 +1158,11 @@ hr { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
 </ul>
 <p><strong>講者背景</strong>：Dominic Pajak 現任 Arm Senior Director, Edge AI，持有英國里茲大學電腦科學博士學位。2024–2025 年曾任 Synaptics AI 軟體部門主管，主導打造獲 CES 2025 矚目的裝置端語音助理開發框架；更早曾參與 Arduino 與 Google 合作打造嵌入式 AI 開發套件。</p>
 <h3 id="b.-核心思想煉金-7" data-letter="B"><span class="h3-label">核心思想煉金</span></h3>
-<p><strong>思想寶石</strong>：講者把「邊緣 AI」重新定義成一個路由問題而非單純的模型縮小問題——真正的價值不在於把模型塞進裝置裡，而在於建立一層判斷機制，在真正呼叫完整模型之前，先用便宜訊號（例如比對 prompt 與過往成功/失敗案例的 embedding 相似度）判斷這個任務該留在裝置端還是該轉發到更強的雲端模型（🔑 挑戰「edge vs cloud」二選一的常見框架；🔄 可遷移到任何地端/雲端混合架構決策，不只限於消費性機器人；⚡ 直接改變 IT 負責人規劃地端與雲端 AI 分工時的技術選型方向）。另一個值得留意的觀察：Raspberry Pi 上 YOLO26 優化後跑出更高 FPS，但講者特別指出這種「跑滿四核心才拿到的 FPS 數字」在實際產品中並不理想——真正的產品價值是優化後省下的 CPU 核心餘裕，讓裝置還能同時跑其他應用邏輯（🔑 挑戰「效能 benchmark 數字越高越好」的直覺；⚡ 改變評估供應商 benchmark 時該追問的問題）。</p>
+<p><strong>思想寶石</strong>：</p>
+<ol type="1">
+<li>講者把「邊緣 AI」重新定義成一個路由問題而非單純的模型縮小問題——真正的價值不在於把模型塞進裝置裡，而在於建立一層判斷機制，在真正呼叫完整模型之前，先用便宜訊號（例如比對 prompt 與過往成功/失敗案例的 embedding 相似度）判斷這個任務該留在裝置端還是該轉發到更強的雲端模型（🔑 挑戰「edge vs cloud」二選一的常見框架；🔄 可遷移到任何地端/雲端混合架構決策，不只限於消費性機器人；⚡ 直接改變 IT 負責人規劃地端與雲端 AI 分工時的技術選型方向）。</li>
+<li>另一個值得留意的觀察：Raspberry Pi 上 YOLO26 優化後跑出更高 FPS，但講者特別指出這種「跑滿四核心才拿到的 FPS 數字」在實際產品中並不理想——真正的產品價值是優化後省下的 CPU 核心餘裕，讓裝置還能同時跑其他應用邏輯（🔑 挑戰「效能 benchmark 數字越高越好」的直覺；⚡ 改變評估供應商 benchmark 時該追問的問題）。</li>
+</ol>
 <p><strong>關鍵引言</strong>：</p>
 <blockquote>
 <p>“The intention economy is understanding what people want and providing solutions to it without them having to spell out everything.” （意圖經濟指的是理解人們真正想要什麼，並在他們不用把一切講清楚的情況下就提供解決方案。）</p>
